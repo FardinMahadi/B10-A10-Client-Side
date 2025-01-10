@@ -6,6 +6,7 @@ import AllReview from "./../layouts/AllReview";
 import MyReviews from "./../layouts/MyReviews";
 import UpdateReview from "./../layouts/UpdateReview";
 import MyWatchList from "./../layouts/MyWatchList";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "addReview",
-    element: <AddReview />,
+    element: (
+      <PrivateRoutes>
+        <AddReview />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "reviews",
@@ -26,15 +31,27 @@ const router = createBrowserRouter([
   },
   {
     path: "myReviews",
-    element: <MyReviews />,
+    element: (
+      <PrivateRoutes>
+        <MyReviews />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "updateReview/:id",
-    element: <UpdateReview />,
+    element: (
+      <PrivateRoutes>
+        <UpdateReview />
+      </PrivateRoutes>
+    ),
   },
   {
     path: "myWatchlist",
-    element: <MyWatchList />,
+    element: (
+      <PrivateRoutes>
+        <MyWatchList />
+      </PrivateRoutes>
+    ),
   },
 ]);
 
