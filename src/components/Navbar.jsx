@@ -1,10 +1,39 @@
-import logoImg from "../assets/logoImg.png";
+import React from "react";
+import Logo from "./Logo";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 const Navbar = () => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
+  const applyLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+  };
+
+  const applyDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+  };
+
+  const toggleDarkMode = (checked) => {
+    setIsDarkMode(checked);
+    if (checked) {
+      applyDarkMode();
+    } else {
+      applyLightMode();
+    }
+  };
+
+  React.useEffect(() => {
+    isDarkMode ? applyDarkMode() : applyLightMode();
+  }, [isDarkMode]);
+
   return (
-    <div className="flex items-center text-3xl italic">
-      <img src={logoImg} className="h-5 mr-2" />
-      <span className="text-red-500 font-semibold">Chill</span>Gamer
+    <div className="p-5 dark:bg-blue-500">
+      <Logo />
+      <DarkModeSwitch
+        checked={isDarkMode}
+        onChange={toggleDarkMode}
+        size={40}
+      />
     </div>
   );
 };

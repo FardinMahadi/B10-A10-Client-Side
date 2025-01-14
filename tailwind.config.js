@@ -5,4 +5,13 @@ export default {
     extend: {},
   },
   plugins: [require("daisyui")],
+  darkMode: "class",
+  theme: {
+    extend: {
+      primary: "var(--color-primary)",
+      secondary: "var(--color-secondary)",
+      bgPrimary: "var(--color-bg-primary)",
+      tBase: "var(--color-text-base)",
+    },
+  },
 };
