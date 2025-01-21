@@ -1,5 +1,11 @@
 import { createContext, useState } from "react";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -34,14 +40,68 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+    return regex.test(password);
+  };
+
+  const createNewUser = async (email, password) => {
+    if (!validatePassword(password)) {
+      throw new Error(
+        "Password must be at least 6 characters long and contain both letters and numbers."
+      );
+    }
+
+    setLoading(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logIn = async (email, password) => {
+    if (!validatePassword(password)) {
+      throw new Error(
+        "Password must be at least 6 characters long and contain both letters and numbers."
+      );
+    }
+
+    setLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential;
+    } catch (error) {
+      console.error("Error logging in:", error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const authInfo = {
     isDarkMode,
     setIsDarkMode,
     user,
     setUser,
+    validatePassword,
     loading,
     setLoading,
     handleGoogleSignIn,
+    createNewUser,
+    logIn,
   };
 
   return (

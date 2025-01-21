@@ -47,6 +47,7 @@ const Navbar = () => {
   // Reusable links component for both desktop and mobile dropdown
   const links = (
     <>
+      {/* public links */}
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -68,36 +69,41 @@ const Navbar = () => {
       >
         All Reviews
       </NavLink>
-      <NavLink
-        to="/addReview"
-        className={({ isActive }) =>
-          isActive
-            ? "block px-3 py-2 text-primary"
-            : "block px-3 py-2 hover:text-primary"
-        }
-      >
-        Add Review
-      </NavLink>
-      <NavLink
-        to="/myReviews"
-        className={({ isActive }) =>
-          isActive
-            ? "block px-3 py-2 text-primary"
-            : "block px-3 py-2 hover:text-primary"
-        }
-      >
-        My Reviews
-      </NavLink>
-      <NavLink
-        to="/myWatchlist"
-        className={({ isActive }) =>
-          isActive
-            ? "block px-3 py-2 text-primary"
-            : "block px-3 py-2 hover:text-primary"
-        }
-      >
-        Game WatchList
-      </NavLink>
+      {/* private links */}
+      {user && (
+        <>
+          <NavLink
+            to="/addReview"
+            className={({ isActive }) =>
+              isActive
+                ? "block px-3 py-2 text-primary"
+                : "block px-3 py-2 hover:text-primary"
+            }
+          >
+            Add Review
+          </NavLink>
+          <NavLink
+            to="/myReviews"
+            className={({ isActive }) =>
+              isActive
+                ? "block px-3 py-2 text-primary"
+                : "block px-3 py-2 hover:text-primary"
+            }
+          >
+            My Reviews
+          </NavLink>
+          <NavLink
+            to="/myWatchlist"
+            className={({ isActive }) =>
+              isActive
+                ? "block px-3 py-2 text-primary"
+                : "block px-3 py-2 hover:text-primary"
+            }
+          >
+            Game WatchList
+          </NavLink>
+        </>
+      )}
     </>
   );
 
@@ -150,10 +156,11 @@ const Navbar = () => {
                     <div className="relative group">
                       <img
                         className="h-10 w-10 rounded-full cursor-pointer"
-                        src={user.photoURL}
-                        alt={user.displayName}
+                        src={user.photoURL || "../assets/user.png"}
+                        alt={user.displayName || "User"}
                         data-tooltip-id="user-tooltip"
                       />
+
                       <Tooltip id="user-tooltip" clickable>
                         <p className="font-semibold">{user.displayName}</p>
                         <button
@@ -197,7 +204,7 @@ const Navbar = () => {
               <div className="relative group">
                 <img
                   className="h-10 w-10 rounded-full cursor-pointer"
-                  src={user.photoURL}
+                  src={user.photoURL || "../../src/assets/user.png"}
                   alt={user.displayName}
                   data-tooltip-id="my-tooltip"
                 />
