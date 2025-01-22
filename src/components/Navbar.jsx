@@ -14,6 +14,10 @@ const Navbar = () => {
     document.querySelector("body").setAttribute("data-theme", theme);
   };
 
+  const theme = localStorage.getItem("theme") || "dark";
+  setIsDarkMode(theme === "dark");
+  applyTheme(theme);
+
   const toggleDarkMode = (checked) => {
     setIsDarkMode(checked);
     const theme = checked ? "dark" : "light";
@@ -22,29 +26,11 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    setUser(null); // Clear user data in state
-    localStorage.removeItem("user"); // Clear user data in localStorage
+    setUser(null);
+    localStorage.removeItem("user");
     console.log("User logged out");
   };
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setIsDarkMode(savedTheme === "dark");
-    applyTheme(savedTheme);
-
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser)); // Restore user data into context
-    }
-  }, [setIsDarkMode, setUser]);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    }
-  }, [user]);
-
-  // Reusable links component for both desktop and mobile dropdown
   const links = (
     <>
       {/* public links */}
@@ -221,7 +207,7 @@ const Navbar = () => {
                 </Tooltip>
               </div>
             ) : (
-              <Link to="auth/signup" className="text-primary">
+              <Link to="/auth/signup" className="text-primary">
                 Sign Up
               </Link>
             )}

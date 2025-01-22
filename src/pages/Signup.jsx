@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
@@ -7,14 +7,12 @@ const Signup = () => {
   const { setUser, setLoading, handleGoogleSignIn, createNewUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
-
   const [error, setError] = useState("");
 
   const handleGoogleSignInWithRedirect = async () => {
     setLoading(true);
     try {
       const userCredential = await handleGoogleSignIn();
-      setUser(userCredential.user); // Update user context with Google sign-in user
       navigate("/");
     } catch (error) {
       setError(`Google sign-in failed: ${error.message}`);
@@ -32,7 +30,6 @@ const Signup = () => {
     const password = form.password.value.trim();
     const confirm = form.confirm_password.value.trim();
 
-    // Basic validation
     if (!name || !email || !password || !confirm) {
       setError("All fields are required.");
       return;
@@ -45,17 +42,14 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      // Create a new user using email and password
       const userCredential = await createNewUser(email, password);
 
-      // Optional: Update user profile
       if (userCredential.user && userCredential.user.updateProfile) {
         await userCredential.user.updateProfile({
           displayName: name,
         });
       }
 
-      // Update user context
       const updatedUser = { ...userCredential.user, displayName: name };
       setUser(updatedUser);
 

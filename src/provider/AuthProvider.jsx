@@ -1,20 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import LoadingPage from "../pages/LoadingPage";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Default to true to show the loader initially
+
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
 
@@ -29,8 +31,6 @@ const AuthProvider = ({ children }) => {
         email: googleUser.email,
         photoURL: googleUser.photoURL,
       });
-
-      console.log("Google Sign-In successful:", googleUser);
       return googleUser;
     } catch (error) {
       console.error("Error during Google Sign-In:", error.message);
@@ -91,6 +91,29 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // Listen to authentication state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const timer = setTimeout(() => {
+        if (currentUser) {
+          // Map the user object for your application needs
+          setUser({
+            displayName: currentUser.displayName,
+            email: currentUser.email,
+            photoURL: currentUser.photoURL,
+          });
+        } else {
+          setUser(null); // User is signed out
+        }
+        setLoading(false); // Set loading to false after auth state is determined
+      }, 500); // Ensure loading screen is shown for at least 2 seconds
+
+      return () => clearTimeout(timer); // Cleanup the timer
+    });
+
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, [auth]);
+
   const authInfo = {
     isDarkMode,
     setIsDarkMode,
@@ -105,7 +128,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {loading ? <LoadingPage /> : children}
+    </AuthContext.Provider>
   );
 };
 

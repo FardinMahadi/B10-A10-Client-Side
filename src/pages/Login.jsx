@@ -4,14 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
-  const { handleGoogleSignIn, loading, setLoading, logIn, user, setUser } =
+  const { handleGoogleSignIn, loading, setLoading, logIn, setUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
-  // Handle input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -20,7 +19,6 @@ const Login = () => {
     }));
   };
 
-  // Handle form submission
   const handleLogin = async (event) => {
     event.preventDefault();
     const { email, password } = formData;
@@ -41,7 +39,13 @@ const Login = () => {
     setLoading(true);
     try {
       const userCredential = await handleGoogleSignIn();
-      setUser(userCredential.user); // Update user state in AuthContext
+      const user = {
+        displayName: userCredential.displayName,
+        email: userCredential.email,
+        photoURL: userCredential.photoURL,
+      }
+      setUser(user);
+      console.log(user);
       navigate("/");
     } catch (error) {
       setError(`Google sign-in failed: ${error.message}`);
