@@ -190,7 +190,11 @@ const Navbar = () => {
               <div className="relative group">
                 <img
                   className="h-10 w-10 rounded-full cursor-pointer"
-                  src={user.photoURL || "../../src/assets/user.png"}
+                  src={
+                    user.photoURL != null
+                      ? user.photoURL
+                      : "../../src/assets/user.png"
+                  }
                   alt={user.displayName}
                   data-tooltip-id="my-tooltip"
                 />

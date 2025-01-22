@@ -14,7 +14,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true); // Default to true to show the loader initially
 
   const auth = getAuth(app);
@@ -103,15 +103,15 @@ const AuthProvider = ({ children }) => {
             photoURL: currentUser.photoURL,
           });
         } else {
-          setUser(null); // User is signed out
+          setUser(null);
         }
-        setLoading(false); // Set loading to false after auth state is determined
-      }, 500); // Ensure loading screen is shown for at least 2 seconds
+        setLoading(false);
+      }, 500);
 
-      return () => clearTimeout(timer); // Cleanup the timer
+      return () => clearTimeout(timer);
     });
 
-    return () => unsubscribe(); // Cleanup listener on unmount
+    return () => unsubscribe();
   }, [auth]);
 
   const authInfo = {

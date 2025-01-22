@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
@@ -50,10 +50,32 @@ const Signup = () => {
         });
       }
 
-      const updatedUser = { ...userCredential.user, displayName: name };
+      const updatedUser = {
+        ...userCredential.user,
+        displayName: name,
+      };
       setUser(updatedUser);
 
+      console.log(updatedUser);
+
       console.log("User signed up:", updatedUser);
+
+      const user = {
+        displayName: name,
+        email,
+        password,
+        accCreated: new Date().toISOString(),
+      };
+
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log("Inside post response", data));
 
       form.reset();
       navigate("/");
