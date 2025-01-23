@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Signup = () => {
-  const { setUser, setLoading, handleGoogleSignIn, createNewUser } =
+  const { user, setUser, setLoading, handleGoogleSignIn, createNewUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -14,7 +14,6 @@ const Signup = () => {
     try {
       const userCredential = await handleGoogleSignIn();
 
-      // Assuming you have an API to save the user
       const response = await fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
@@ -69,28 +68,20 @@ const Signup = () => {
         });
       }
 
-      const updatedUser = {
-        ...userCredential.user,
-        displayName: name,
-      };
-      setUser(updatedUser);
+      setUser(userCredential.user);
 
-      const user = {
-        displayName: name,
-        email,
-        accCreated: new Date().toISOString(),
-      };
-
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL || "http://localhost:5000"}/users`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
-      );
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          displayName: name,
+          email,
+          photoURL: null,
+          lastLogin: new Date().toISOString(),
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to save user to the database.");
@@ -99,7 +90,6 @@ const Signup = () => {
       const data = await response.json();
       console.log("User saved successfully:", data);
 
-      form.reset();
       navigate("/");
     } catch (error) {
       console.error("Sign-up error:", error.message);

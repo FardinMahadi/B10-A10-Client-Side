@@ -15,7 +15,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Default to true to show the loader initially
+  const [loading, setLoading] = useState(true);
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
@@ -30,7 +30,6 @@ const AuthProvider = ({ children }) => {
         displayName: googleUser.displayName,
         email: googleUser.email,
         photoURL: googleUser.photoURL,
-        accCreated: new Date().toISOString(),
         lastLogin: new Date().toISOString(),
       });
 
