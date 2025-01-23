@@ -5,8 +5,11 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { AuthContext } from "../provider/AuthProvider";
 import { Tooltip } from "react-tooltip";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { getAuth, signOut } from "firebase/auth";
 
 const Navbar = () => {
+  const auth = getAuth();
+
   const { isDarkMode, setIsDarkMode, user, setUser } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown menu
 
@@ -27,8 +30,13 @@ const Navbar = () => {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem("user");
-    console.log("User logged out");
+    signOut(auth)
+      .then(() => {
+        console.log("User Logged Out");
+      })
+      .catch((error) => {
+        console.error("Error during logout:", error);
+      });
   };
 
   const links = (
@@ -142,19 +150,21 @@ const Navbar = () => {
                     <div className="relative group">
                       <img
                         className="h-10 w-10 rounded-full cursor-pointer"
-                        src={user.photoURL || "../assets/user.png"}
-                        alt={user.displayName || "User"}
-                        data-tooltip-id="user-tooltip"
+                        src={user.photoURL || "../../src/assets/user.png"}
+                        alt={user.displayName}
+                        data-tooltip-id="my-tooltip"
                       />
 
-                      <Tooltip id="user-tooltip" clickable>
-                        <p className="font-semibold">{user.displayName}</p>
-                        <button
-                          className="btn btn-sm btn-error mt-2"
-                          onClick={handleLogout}
-                        >
-                          Logout
-                        </button>
+                      <Tooltip id="my-tooltip" clickable>
+                        <div className="text-center">
+                          <p className="font-semibold">{user.displayName}</p>
+                          <button
+                            className="btn btn-sm btn-error mt-2"
+                            onClick={() => handleLogout()}
+                          >
+                            Logout
+                          </button>
+                        </div>
                       </Tooltip>
                     </div>
                   ) : (
@@ -190,11 +200,7 @@ const Navbar = () => {
               <div className="relative group">
                 <img
                   className="h-10 w-10 rounded-full cursor-pointer"
-                  src={
-                    user.photoURL != null
-                      ? user.photoURL
-                      : "../../src/assets/user.png"
-                  }
+                  src={user.photoURL || "../../src/assets/user.png"}
                   alt={user.displayName}
                   data-tooltip-id="my-tooltip"
                 />
@@ -203,7 +209,7 @@ const Navbar = () => {
                     <p className="font-semibold">{user.displayName}</p>
                     <button
                       className="btn btn-sm btn-error mt-2"
-                      onClick={handleLogout}
+                      onClick={() => handleLogout()}
                     >
                       Logout
                     </button>

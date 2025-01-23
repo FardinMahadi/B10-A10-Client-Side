@@ -14,7 +14,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Default to true to show the loader initially
 
   const auth = getAuth(app);
@@ -30,7 +30,27 @@ const AuthProvider = ({ children }) => {
         displayName: googleUser.displayName,
         email: googleUser.email,
         photoURL: googleUser.photoURL,
+        accCreated: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
       });
+
+      const response = await fetch(`http://localhost:5000/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          displayName: googleUser.displayName,
+          email: googleUser.email,
+          photoURL: googleUser.photoURL,
+          accCreated: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save user to the database.");
+      }
+
       return googleUser;
     } catch (error) {
       console.error("Error during Google Sign-In:", error.message);

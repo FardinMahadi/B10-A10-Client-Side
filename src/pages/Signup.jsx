@@ -13,8 +13,27 @@ const Signup = () => {
     setLoading(true);
     try {
       const userCredential = await handleGoogleSignIn();
+
+      // Assuming you have an API to save the user
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: userCredential.user }),
+      });
+
+      setUser(userCredential.user);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("User saved successfully:", data);
       navigate("/");
     } catch (error) {
+      console.error("Google sign-in error:", error.message);
       setError(`Google sign-in failed: ${error.message}`);
     } finally {
       setLoading(false);
@@ -56,31 +75,34 @@ const Signup = () => {
       };
       setUser(updatedUser);
 
-      console.log(updatedUser);
-
-      console.log("User signed up:", updatedUser);
-
       const user = {
         displayName: name,
         email,
-        password,
         accCreated: new Date().toISOString(),
       };
 
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log("Inside post response", data));
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL || "http://localhost:5000"}/users`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to save user to the database.");
+      }
+
+      const data = await response.json();
+      console.log("User saved successfully:", data);
 
       form.reset();
       navigate("/");
     } catch (error) {
-      console.error("Error during sign-up:", error.message);
+      console.error("Sign-up error:", error.message);
       setError(error.message);
     } finally {
       setLoading(false);
@@ -97,6 +119,7 @@ const Signup = () => {
         {error && (
           <div className="mt-4 text-sm text-red-600 text-center">{error}</div>
         )}
+
         <form className="mt-6 space-y-4" onSubmit={handleSignUp}>
           <div>
             <label className="block text-sm font-medium">Username</label>
