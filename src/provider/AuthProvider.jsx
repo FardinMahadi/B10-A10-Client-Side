@@ -20,6 +20,17 @@ const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
 
+  useEffect(() => {
+    if (user && user.email) {
+      fetch(`http://localhost:5000/users?email=${user.email}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => setUser(data))
+        .catch((error) => console.error("Error fetching user data:", error));
+    }
+  }, [user]);
+
   const handleGoogleSignIn = async () => {
     setLoading(true);
     try {
