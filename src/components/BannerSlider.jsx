@@ -22,7 +22,7 @@ const BannerSlider = () => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden scale-90">
       <div className="carousel w-full">
         {games.map((game, index) => (
           <div
