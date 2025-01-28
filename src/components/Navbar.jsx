@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "./Logo";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
@@ -6,20 +6,23 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Tooltip } from "react-tooltip";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { getAuth, signOut } from "firebase/auth";
+import defaultUserImg from "../../src/assets/user.png";
 
 const Navbar = () => {
   const auth = getAuth();
-
   const { isDarkMode, setIsDarkMode, user, setUser } = useContext(AuthContext);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown menu
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Apply theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setIsDarkMode(savedTheme === "dark");
+    applyTheme(savedTheme);
+  }, []);
 
   const applyTheme = (theme) => {
     document.querySelector("body").setAttribute("data-theme", theme);
   };
-
-  const theme = localStorage.getItem("theme") || "dark";
-  setIsDarkMode(theme === "dark");
-  applyTheme(theme);
 
   const toggleDarkMode = (checked) => {
     setIsDarkMode(checked);
@@ -29,9 +32,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    setUser(null);
     signOut(auth)
       .then(() => {
+        setUser(null);
         console.log("User Logged Out");
       })
       .catch((error) => {
@@ -39,84 +42,61 @@ const Navbar = () => {
       });
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest(".dropdown")) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   const links = (
     <>
-      {/* public links */}
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive
-            ? "block px-3 py-2 text-primary"
-            : "block px-3 py-2 hover:text-primary"
-        }
-        aria-current="page"
-      >
+      <NavLink to="/" className="block px-3 py-2 hover:text-primary">
         Home
       </NavLink>
-      <NavLink
-        to="/allReviews"
-        className={({ isActive }) =>
-          isActive
-            ? "block px-3 py-2 text-primary"
-            : "block px-3 py-2 hover:text-primary"
-        }
-      >
+      <NavLink to="/allReviews" className="block px-3 py-2 hover:text-primary">
         All Reviews
       </NavLink>
-      {/* private links */}
       {user && (
         <>
           <NavLink
             to="/addReview"
-            className={({ isActive }) =>
-              isActive
-                ? "block px-3 py-2 text-primary"
-                : "block px-3 py-2 hover:text-primary"
-            }
+            className="block px-3 py-2 hover:text-primary"
           >
             Add Review
           </NavLink>
           <NavLink
             to="/myReviews"
-            className={({ isActive }) =>
-              isActive
-                ? "block px-3 py-2 text-primary"
-                : "block px-3 py-2 hover:text-primary"
-            }
+            className="block px-3 py-2 hover:text-primary"
           >
             My Reviews
           </NavLink>
           <NavLink
             to="/myWatchlist"
-            className={({ isActive }) =>
-              isActive
-                ? "block px-3 py-2 text-primary"
-                : "block px-3 py-2 hover:text-primary"
-            }
+            className="block px-3 py-2 hover:text-primary"
           >
-            Game WatchList
+            Game Watchlist
           </NavLink>
         </>
       )}
     </>
   );
 
-  // Function to toggle the dropdown
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
-
   return (
     <div className="container mx-auto py-5">
       <div className="flex px-5 md:flex-row justify-between items-center relative">
-        {/* logo */}
-        <div>
-          <Link to="/">
-            <Logo />
-          </Link>
-        </div>
-
-        {/* mobile dropdown */}
+        <Link to="/">
+          <Logo />
+        </Link>
         <div className="dropdown md:hidden relative">
           <div
             tabIndex={0}
@@ -130,10 +110,7 @@ const Navbar = () => {
             <GiHamburgerMenu />
           </div>
           {isDropdownOpen && (
-            <ul
-              id="mobile-menu"
-              className="absolute top-full right-0 mt-2 dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-            >
+            <ul className="absolute top-full right-0 mt-2 bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
               {links}
               <div className="divider"></div>
               <div className="flex gap-4 items-center justify-center">
@@ -141,87 +118,64 @@ const Navbar = () => {
                   checked={isDarkMode}
                   onChange={toggleDarkMode}
                   size={20}
-                  aria-label={
-                    isDarkMode ? "Switch to light mode" : "Switch to dark mode"
-                  }
                 />
-                <div>
-                  {user ? (
-                    <div className="relative group">
-                      <img
-                        className="h-10 w-10 rounded-full cursor-pointer"
-                        src={user.photoURL || "../../src/assets/user.png"}
-                        alt={user.displayName}
-                        data-tooltip-id="my-tooltip"
-                      />
-
-                      <Tooltip id="my-tooltip" clickable>
-                        <div className="text-center">
-                          <p className="font-semibold">{user.displayName}</p>
-                          <button
-                            className="btn btn-sm btn-error mt-2"
-                            onClick={() => handleLogout()}
-                          >
-                            Logout
-                          </button>
-                        </div>
-                      </Tooltip>
-                    </div>
-                  ) : (
-                    <Link to="auth/signup" className="text-primary">
-                      Sign Up
-                    </Link>
-                  )}
-                </div>
+                {user ? (
+                  <div className="relative">
+                    <img
+                      className="h-10 w-10 rounded-full"
+                      src={user.photoURL || defaultUserImg}
+                      alt={user.displayName}
+                      data-tooltip-id="my-tooltip"
+                    />
+                    <Tooltip id="my-tooltip">
+                      <p className="font-semibold">{user.displayName}</p>
+                      <button
+                        className="btn btn-sm btn-error mt-2"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <Link to="/auth/signup" className="text-primary">
+                    Sign Up
+                  </Link>
+                )}
               </div>
             </ul>
           )}
         </div>
-
-        {/* links for larger screens */}
-        <div className="hidden md:block">
-          <ul className="flex flex-wrap justify-center items-center text-sm">
-            {links}
-          </ul>
-        </div>
-
-        {/* colormode and auth for larger screens */}
-        <div className="hidden md:flex gap-4 items-center justify-center">
+        <div className="hidden md:flex items-center gap-4">
+          <ul className="flex">{links}</ul>
           <DarkModeSwitch
             checked={isDarkMode}
             onChange={toggleDarkMode}
             size={20}
-            aria-label={
-              isDarkMode ? "Switch to light mode" : "Switch to dark mode"
-            }
           />
-          <div>
-            {user ? (
-              <div className="relative group">
-                <img
-                  className="h-10 w-10 rounded-full cursor-pointer"
-                  src={user.photoURL || "../../src/assets/user.png"}
-                  alt={user.displayName}
-                  data-tooltip-id="my-tooltip"
-                />
-                <Tooltip id="my-tooltip" clickable>
-                  <div className="text-center">
-                    <p className="font-semibold">{user.displayName}</p>
-                    <button
-                      className="btn btn-sm btn-error mt-2"
-                      onClick={() => handleLogout()}
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </Tooltip>
-              </div>
-            ) : (
-              <Link to="/auth/signup" className="text-primary">
-                Sign Up
-              </Link>
-            )}
-          </div>
+          {user ? (
+            <div className="relative">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={user.photoURL || defaultUserImg}
+                alt={user.displayName}
+                data-tooltip-id="my-tooltip"
+              />
+              <Tooltip id="my-tooltip">
+                <p className="font-semibold">{user.displayName}</p>
+                <button
+                  className="btn btn-sm btn-error mt-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </Tooltip>
+            </div>
+          ) : (
+            <Link to="/auth/signup" className="text-primary">
+              Sign Up
+            </Link>
+          )}
         </div>
       </div>
     </div>

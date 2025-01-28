@@ -1,0 +1,602 @@
+[
+  {
+    "reviewId": 101,
+    "gameId": 1,
+    "userId": 1001,
+    "username": "GamerKing",
+    "rating": 10,
+    "title": "A Masterpiece of RPG Storytelling",
+    "content": "The Witcher 3 is an incredible blend of storytelling, world-building, and gameplay. It's a must-play for any RPG fan.",
+    "date": "2023-01-10"
+  },
+  {
+    "reviewId": 102,
+    "gameId": 1,
+    "userId": 1004,
+    "username": "RPGMaster",
+    "rating": 9,
+    "title": "Fantastic World and Characters",
+    "content": "Exploring the vast open world of The Witcher 3 was an unforgettable experience. The characters are so well-written!",
+    "date": "2023-01-15"
+  },
+  {
+    "reviewId": 103,
+    "gameId": 1,
+    "userId": 1009,
+    "username": "LoreSeeker",
+    "rating": 8.8,
+    "title": "Amazing Lore and Side Quests",
+    "content": "The lore and side quests are what make this game truly stand out. There's always something exciting to discover.",
+    "date": "2023-01-20"
+  },
+  {
+    "reviewId": 104,
+    "gameId": 2,
+    "userId": 1002,
+    "username": "FPSFanatic",
+    "rating": 8,
+    "title": "Solid Shooter, But Familiar Gameplay",
+    "content": "Modern Warfare II delivers intense action but feels a bit repetitive compared to its predecessors.",
+    "date": "2023-02-05"
+  },
+  {
+    "reviewId": 105,
+    "gameId": 2,
+    "userId": 1005,
+    "username": "ShooterPro",
+    "rating": 7.5,
+    "title": "Decent Multiplayer, Lacks Innovation",
+    "content": "Multiplayer is fun, but the campaign felt short and predictable.",
+    "date": "2023-02-10"
+  },
+  {
+    "reviewId": 106,
+    "gameId": 2,
+    "userId": 1006,
+    "username": "GraphicsGuy",
+    "rating": 8.5,
+    "title": "Great Graphics and Sound Design",
+    "content": "The graphics and sound design in Modern Warfare II are phenomenal, but the story could be better.",
+    "date": "2023-02-15"
+  },
+  {
+    "reviewId": 107,
+    "gameId": 2,
+    "userId": 1010,
+    "username": "ActionHero",
+    "rating": 7.8,
+    "title": "Exciting but Predictable",
+    "content": "The campaign has some great moments, but the formula is starting to show its age.",
+    "date": "2023-02-20"
+  },
+  {
+    "reviewId": 108,
+    "gameId": 3,
+    "userId": 1003,
+    "username": "SportsGuru",
+    "rating": 7,
+    "title": "Decent Update, But Needs Innovation",
+    "content": "FIFA 24 is fun but lacks substantial changes to differentiate it from FIFA 23.",
+    "date": "2023-03-15"
+  },
+  {
+    "reviewId": 109,
+    "gameId": 3,
+    "userId": 1007,
+    "username": "CasualGamer",
+    "rating": 6.8,
+    "title": "Minimal Changes from Previous Version",
+    "content": "If you already own FIFA 23, there’s little reason to buy FIFA 24. The updates are minimal.",
+    "date": "2023-03-20"
+  },
+  {
+    "reviewId": 110,
+    "gameId": 3,
+    "userId": 1008,
+    "username": "SoccerFanatic",
+    "rating": 7.5,
+    "title": "Still a Great Game for Soccer Fans",
+    "content": "Even with few changes, FIFA 24 remains enjoyable for soccer enthusiasts.",
+    "date": "2023-03-25"
+  },
+  {
+    "reviewId": 111,
+    "gameId": 3,
+    "userId": 1011,
+    "username": "FootballLover",
+    "rating": 7.2,
+    "title": "Good Game, Needs More Features",
+    "content": "Gameplay is smooth, but the lack of innovation in career mode is disappointing.",
+    "date": "2023-03-28"
+  },
+  {
+    "reviewId": 112,
+    "gameId": 4,
+    "userId": 1001,
+    "username": "GamerKing",
+    "rating": 9.2,
+    "title": "A Stunning Open World",
+    "content": "This game offers one of the most immersive open worlds I've ever seen.",
+    "date": "2023-04-01"
+  },
+  {
+    "reviewId": 113,
+    "gameId": 4,
+    "userId": 1005,
+    "username": "ShooterPro",
+    "rating": 8.7,
+    "title": "Great Combat and Exploration",
+    "content": "The combat is intense, and the exploration feels rewarding.",
+    "date": "2023-04-05"
+  },
+  {
+    "reviewId": 114,
+    "gameId": 5,
+    "userId": 1006,
+    "username": "GraphicsGuy",
+    "rating": 9.5,
+    "title": "A Visual Masterpiece",
+    "content": "The attention to detail in this game's graphics is unparalleled.",
+    "date": "2023-04-10"
+  },
+  {
+    "reviewId": 115,
+    "gameId": 5,
+    "userId": 1002,
+    "username": "FPSFanatic",
+    "rating": 8.8,
+    "title": "Engaging and Beautiful",
+    "content": "A fantastic blend of gameplay and visuals, although the story could use more depth.",
+    "date": "2023-04-15"
+  },
+  {
+    "reviewId": 116,
+    "gameId": 6,
+    "userId": 1012,
+    "username": "AdventureLover",
+    "rating": 9.3,
+    "title": "A Thrilling Adventure",
+    "content": "This game nails exploration and puzzles. The story kept me hooked until the very end!",
+    "date": "2023-05-01"
+  },
+  {
+    "reviewId": 117,
+    "gameId": 6,
+    "userId": 1013,
+    "username": "CasualPlayer",
+    "rating": 8.0,
+    "title": "Fun, But Can Be Challenging",
+    "content": "Great game, but some parts of the gameplay felt frustratingly hard for casual players.",
+    "date": "2023-05-05"
+  },
+  {
+    "reviewId": 118,
+    "gameId": 6,
+    "userId": 1014,
+    "username": "PuzzlePro",
+    "rating": 9.5,
+    "title": "The Best Adventure Game of the Year",
+    "content": "The puzzles are incredibly well-designed, and the graphics are breathtaking!",
+    "date": "2023-05-08"
+  },
+  {
+    "reviewId": 119,
+    "gameId": 7,
+    "userId": 1015,
+    "username": "ShooterFanatic",
+    "rating": 8.8,
+    "title": "Fast-Paced Action",
+    "content": "A must-play for any shooter fan! The multiplayer mode is especially addictive.",
+    "date": "2023-06-10"
+  },
+  {
+    "reviewId": 120,
+    "gameId": 7,
+    "userId": 1016,
+    "username": "StorySeeker",
+    "rating": 7.5,
+    "title": "Fun Combat, Weak Story",
+    "content": "The gameplay is super engaging, but the story feels rushed and underdeveloped.",
+    "date": "2023-06-15"
+  },
+  {
+    "reviewId": 121,
+    "gameId": 7,
+    "userId": 1017,
+    "username": "MultiplayerManiac",
+    "rating": 9.0,
+    "title": "Best Multiplayer Experience",
+    "content": "This is the most fun I've had with friends online. Highly recommended for competitive players.",
+    "date": "2023-06-20"
+  },
+  {
+    "reviewId": 122,
+    "gameId": 8,
+    "userId": 1018,
+    "username": "RPGFan",
+    "rating": 9.4,
+    "title": "An Epic RPG Journey",
+    "content": "The open-world design is incredible, and the level of character customization is unmatched.",
+    "date": "2023-07-01"
+  },
+  {
+    "reviewId": 123,
+    "gameId": 8,
+    "userId": 1019,
+    "username": "Completionist",
+    "rating": 9.2,
+    "title": "A Completionist's Dream",
+    "content": "With so many side quests and hidden content, this game kept me busy for weeks!",
+    "date": "2023-07-10"
+  },
+  {
+    "reviewId": 124,
+    "gameId": 8,
+    "userId": 1020,
+    "username": "WorldBuilder",
+    "rating": 8.9,
+    "title": "Beautiful World with Minor Flaws",
+    "content": "The world is absolutely stunning, but some mechanics felt a bit clunky.",
+    "date": "2023-07-15"
+  },
+  {
+    "reviewId": 125,
+    "gameId": 9,
+    "userId": 1021,
+    "username": "SportsLegend",
+    "rating": 8.5,
+    "title": "Exciting Sports Action",
+    "content": "This game captures the thrill of sports, but the AI could be more dynamic.",
+    "date": "2023-08-01"
+  },
+  {
+    "reviewId": 126,
+    "gameId": 9,
+    "userId": 1022,
+    "username": "ArcadeFan",
+    "rating": 7.8,
+    "title": "Fun but Repetitive",
+    "content": "It's a fun experience, but after a few hours, it starts to feel repetitive.",
+    "date": "2023-08-05"
+  },
+  {
+    "reviewId": 127,
+    "gameId": 9,
+    "userId": 1023,
+    "username": "ProPlayer",
+    "rating": 9.0,
+    "title": "Challenging and Rewarding",
+    "content": "Mastering the mechanics took time, but it's one of the most rewarding sports games I've played.",
+    "date": "2023-08-10"
+  },
+  {
+    "reviewId": 128,
+    "gameId": 10,
+    "userId": 1024,
+    "username": "StrategyGuru",
+    "rating": 9.6,
+    "title": "A Brilliant Strategy Game",
+    "content": "The tactical depth and AI are absolutely fantastic. Highly recommended for strategy lovers.",
+    "date": "2023-09-01"
+  },
+  {
+    "reviewId": 129,
+    "gameId": 10,
+    "userId": 1025,
+    "username": "HistoryBuff",
+    "rating": 9.2,
+    "title": "Immersive and Historically Accurate",
+    "content": "The historical detail and strategic gameplay make this a must-play.",
+    "date": "2023-09-10"
+  },
+  {
+    "reviewId": 130,
+    "gameId": 10,
+    "userId": 1026,
+    "username": "Thinker",
+    "rating": 8.8,
+    "title": "Deep and Challenging",
+    "content": "The mechanics are intricate and rewarding, but the steep learning curve may put off casual players.",
+    "date": "2023-09-15"
+  },
+  {
+    "reviewId": 131,
+    "gameId": 11,
+    "userId": 1027,
+    "username": "ActionHero",
+    "rating": 9.2,
+    "title": "Non-Stop Action",
+    "content": "This game has non-stop action, adrenaline-pumping moments, and satisfying combat. I couldn’t put it down!",
+    "date": "2023-09-20"
+  },
+  {
+    "reviewId": 132,
+    "gameId": 11,
+    "userId": 1028,
+    "username": "StoryTeller",
+    "rating": 8.5,
+    "title": "Great Combat, Story Could Be Better",
+    "content": "The combat is fantastic, but I felt the story didn’t live up to the action sequences. Still a great experience!",
+    "date": "2023-09-25"
+  },
+  {
+    "reviewId": 133,
+    "gameId": 11,
+    "userId": 1029,
+    "username": "FPSMaster",
+    "rating": 8.9,
+    "title": "Fantastic Mechanics and Visuals",
+    "content": "The game’s mechanics are top-tier, and the visuals are stunning. However, the plot didn’t keep me as invested.",
+    "date": "2023-09-30"
+  },
+  {
+    "reviewId": 134,
+    "gameId": 12,
+    "userId": 1030,
+    "username": "Strategist",
+    "rating": 9.4,
+    "title": "A Perfect Strategy Game",
+    "content": "If you're into strategy games, this one is a masterpiece. Every decision feels meaningful, and the challenge is intense.",
+    "date": "2023-10-01"
+  },
+  {
+    "reviewId": 135,
+    "gameId": 12,
+    "userId": 1031,
+    "username": "TacticsGenius",
+    "rating": 9.1,
+    "title": "Challenging and Rewarding",
+    "content": "This game offers the perfect mix of difficulty and reward. The strategic depth keeps me coming back for more.",
+    "date": "2023-10-05"
+  },
+  {
+    "reviewId": 136,
+    "gameId": 12,
+    "userId": 1032,
+    "username": "HistoryBuff",
+    "rating": 9.3,
+    "title": "A Masterpiece of Tactical Warfare",
+    "content": "The attention to detail in historical settings is impressive. If you love history and strategy, you’ll love this.",
+    "date": "2023-10-10"
+  },
+  {
+    "reviewId": 137,
+    "gameId": 13,
+    "userId": 1033,
+    "username": "RacingFan",
+    "rating": 8.5,
+    "title": "Thrilling Races, Great Graphics",
+    "content": "The racing mechanics are smooth, and the graphics are stunning. However, the AI competitors are a bit predictable.",
+    "date": "2023-10-12"
+  },
+  {
+    "reviewId": 138,
+    "gameId": 13,
+    "userId": 1034,
+    "username": "Speedster",
+    "rating": 9.0,
+    "title": "A Racer’s Dream",
+    "content": "The fast-paced action and incredible graphics make this a must-play for any racing enthusiast.",
+    "date": "2023-10-15"
+  },
+  {
+    "reviewId": 139,
+    "gameId": 13,
+    "userId": 1035,
+    "username": "RaceMaster",
+    "rating": 8.7,
+    "title": "Fun, But Could Use More Tracks",
+    "content": "The racing experience is fun and exciting, but I wish there were more tracks to keep the gameplay fresh.",
+    "date": "2023-10-20"
+  },
+  {
+    "reviewId": 140,
+    "gameId": 14,
+    "userId": 1036,
+    "username": "FantasyFan",
+    "rating": 9.3,
+    "title": "A Beautiful Fantasy World",
+    "content": "The world-building is phenomenal, and the storyline is gripping. A must-play for any fan of fantasy RPGs.",
+    "date": "2023-10-25"
+  },
+  {
+    "reviewId": 141,
+    "gameId": 14,
+    "userId": 1037,
+    "username": "QuestLover",
+    "rating": 9.0,
+    "title": "Immersive Quests and Stunning Visuals",
+    "content": "The immersive world and engaging quests are the highlight. The combat is solid but could use more variety.",
+    "date": "2023-10-30"
+  },
+  {
+    "reviewId": 142,
+    "gameId": 14,
+    "userId": 1038,
+    "username": "EpicGamer",
+    "rating": 8.9,
+    "title": "Epic Fantasy Experience",
+    "content": "The fantasy setting is rich and exciting, with diverse characters and magical abilities. The combat can get a bit repetitive.",
+    "date": "2023-11-02"
+  },
+  {
+    "reviewId": 143,
+    "gameId": 15,
+    "userId": 1039,
+    "username": "SpaceExplorer",
+    "rating": 9.5,
+    "title": "A Cosmic Adventure Like No Other",
+    "content": "This game offers an incredibly immersive space experience. The exploration and storyline are top-notch.",
+    "date": "2023-11-05"
+  },
+  {
+    "reviewId": 144,
+    "gameId": 15,
+    "userId": 1040,
+    "username": "TechGeek",
+    "rating": 9.0,
+    "title": "A Stunning Sci-Fi Experience",
+    "content": "The world-building is superb, and the attention to detail in the universe is phenomenal. A must-play for any sci-fi lover.",
+    "date": "2023-11-10"
+  },
+  {
+    "reviewId": 145,
+    "gameId": 15,
+    "userId": 1041,
+    "username": "CosmicExplorer",
+    "rating": 9.2,
+    "title": "Exploration and Strategy Combined",
+    "content": "Exploring distant planets and managing resources is incredibly satisfying. There’s always something new to discover.",
+    "date": "2023-11-15"
+  },
+  {
+    "reviewId": 146,
+    "gameId": 16,
+    "userId": 1042,
+    "username": "StealthMaster",
+    "rating": 8.8,
+    "title": "Stealth and Strategy Combined",
+    "content": "The stealth mechanics are well-executed, but some parts of the story feel too predictable. A great game for strategy lovers.",
+    "date": "2023-11-20"
+  },
+  {
+    "reviewId": 147,
+    "gameId": 16,
+    "userId": 1043,
+    "username": "ShadowHunter",
+    "rating": 9.0,
+    "title": "Perfect for Stealth Fans",
+    "content": "The tension of sneaking past enemies and the satisfaction of completing a mission without being detected is unparalleled in this game.",
+    "date": "2023-11-25"
+  },
+  {
+    "reviewId": 148,
+    "gameId": 16,
+    "userId": 1044,
+    "username": "TacticalGamer",
+    "rating": 8.5,
+    "title": "Solid Gameplay, Needs More Variety",
+    "content": "The gameplay is great, but I feel like it lacks the variety I’d like to see in terms of mission types and strategies.",
+    "date": "2023-11-30"
+  },
+  {
+    "reviewId": 149,
+    "gameId": 17,
+    "userId": 1045,
+    "username": "HorrorFan",
+    "rating": 9.3,
+    "title": "Terrifying and Immersive",
+    "content": "This horror game excels in atmosphere and tension. The creepy setting and jump scares kept me on edge the entire time.",
+    "date": "2023-12-05"
+  },
+  {
+    "reviewId": 150,
+    "gameId": 17,
+    "userId": 1046,
+    "username": "CreepyGamer",
+    "rating": 9.1,
+    "title": "A Horror Experience Like No Other",
+    "content": "The terrifying atmosphere, combined with the immersive storytelling, makes this one of the best horror games I’ve played in a while.",
+    "date": "2023-12-10"
+  },
+  {
+    "reviewId": 151,
+    "gameId": 17,
+    "userId": 1047,
+    "username": "JumpScareMaster",
+    "rating": 9.0,
+    "title": "Constantly Creepy, Could Use More Combat",
+    "content": "The game keeps you on edge, but I wish there were more moments of combat to balance out the fear and suspense.",
+    "date": "2023-12-15"
+  },
+  {
+    "reviewId": 152,
+    "gameId": 18,
+    "userId": 1048,
+    "username": "SpaceCadet",
+    "rating": 9.4,
+    "title": "A Deep Space Adventure",
+    "content": "The story is engaging, and the space exploration feels incredibly vast. I loved every moment spent in the cosmos.",
+    "date": "2023-12-20"
+  },
+  {
+    "reviewId": 153,
+    "gameId": 18,
+    "userId": 1049,
+    "username": "SciFiFan",
+    "rating": 9.2,
+    "title": "Endless Exploration, Amazing Visuals",
+    "content": "The visuals and scope of the universe are mind-blowing. Exploring unknown planets and discovering new life forms was an unforgettable experience.",
+    "date": "2023-12-25"
+  },
+  {
+    "reviewId": 154,
+    "gameId": 18,
+    "userId": 1050,
+    "username": "InterstellarGamer",
+    "rating": 9.3,
+    "title": "Exploration at Its Finest",
+    "content": "Space exploration has never felt so immersive. The game perfectly captures the thrill of discovering new worlds.",
+    "date": "2023-12-30"
+  },
+  {
+    "reviewId": 155,
+    "gameId": 19,
+    "userId": 1051,
+    "username": "MysterySolver",
+    "rating": 8.7,
+    "title": "A Good Mystery, But Somewhat Predictable",
+    "content": "The story was intriguing, though I guessed the ending pretty early on. Still, a good game for fans of mystery and intrigue.",
+    "date": "2024-01-05"
+  },
+  {
+    "reviewId": 156,
+    "gameId": 19,
+    "userId": 1052,
+    "username": "DetectiveFan",
+    "rating": 8.9,
+    "title": "Engaging Mystery with Great Puzzles",
+    "content": "I enjoyed solving the puzzles and uncovering secrets. While the mystery was compelling, the pacing felt a bit slow at times.",
+    "date": "2024-01-10"
+  },
+  {
+    "reviewId": 157,
+    "gameId": 19,
+    "userId": 1053,
+    "username": "ClueMaster",
+    "rating": 8.8,
+    "title": "Great Atmosphere, Slow Start",
+    "content": "The game builds tension really well, but the beginning was a bit slow. It picks up after the first few chapters.",
+    "date": "2024-01-15"
+  },
+  {
+    "reviewId": 158,
+    "gameId": 20,
+    "userId": 1054,
+    "username": "FantasyLover",
+    "rating": 9.5,
+    "title": "An Epic Fantasy Journey",
+    "content": "This game is an unforgettable experience. The fantasy world is beautifully crafted, and the story is full of twists and turns.",
+    "date": "2024-01-20"
+  },
+  {
+    "reviewId": 159,
+    "gameId": 20,
+    "userId": 1055,
+    "username": "MageMaster",
+    "rating": 9.3,
+    "title": "Magical and Full of Surprises",
+    "content": "The magic system and fantasy world-building are fantastic. The surprises around every corner kept me hooked.",
+    "date": "2024-01-25"
+  },
+  {
+    "reviewId": 160,
+    "gameId": 20,
+    "userId": 1056,
+    "username": "WizardGamer",
+    "rating": 9.4,
+    "title": "A Magical Experience",
+    "content": "The magical world is immersive, and the story kept me invested from start to finish. Definitely one of the best fantasy RPGs I’ve played.",
+    "date": "2024-01-30"
+  }
+]

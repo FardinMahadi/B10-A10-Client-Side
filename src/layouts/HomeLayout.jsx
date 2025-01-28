@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import BannerSlider from "../components/BannerSlider";
 import Footer from "./../components/Footer";
 import Navbar from "./../components/Navbar";
 
@@ -6,7 +6,9 @@ const HomeLayout = () => {
   return (
     <div>
       <Navbar />
-      Home page
+      <div className="container mx-auto mt-14">
+        <BannerSlider />
+      </div>
       <Footer />
     </div>
   );

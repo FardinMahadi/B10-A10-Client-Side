@@ -16,9 +16,19 @@ const AuthProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [games, setGames] = useState(null);
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
+
+  useEffect(() => {
+    fetch("games.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setGames(data); // Store the games in the state
+      })
+      .catch((error) => console.error("Error fetching games:", error));
+  }, []);
 
   useEffect(() => {
     if (user && user.email) {
@@ -155,6 +165,8 @@ const AuthProvider = ({ children }) => {
     handleGoogleSignIn,
     createNewUser,
     logIn,
+    games,
+    setGames,
   };
 
   return (

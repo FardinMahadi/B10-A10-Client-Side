@@ -18,3 +18,16 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
+.mySwiper img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.mySwiper h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #333;
+}
