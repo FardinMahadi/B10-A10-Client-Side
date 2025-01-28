@@ -8,6 +8,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundImage: {
+        "gradient-text": "linear-gradient(to right, #ff7e5f, #feb47b)",
+      },
       primary: "var(--color-primary)",
       secondary: "var(--color-secondary)",
       bgPrimary: "var(--color-bg-primary)",

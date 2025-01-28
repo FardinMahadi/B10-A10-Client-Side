@@ -1,17 +1,6 @@
 [
   {
     "id": 1,
-    "title": "The Witcher 3: Wild Hunt",
-    "genre": "RPG",
-    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
-    "releaseDate": "2015-05-19",
-    "developer": "CD Projekt Red",
-    "rating": 9.5,
-    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjoeSJD-maaNd40HZzP9bXE7K-9hLPQmo1FrGv1QFEZUBiTqT_xZxbKhBoTD__ETcvFlLFyg",
-    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PY-s8qv6RpLD_P0bOhurnkVHm6ATrUZd6A&s"
-  },
-  {
-    "id": 2,
     "title": "Call of Duty: Modern Warfare II",
     "genre": "Shooter",
     "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
@@ -20,6 +9,17 @@
     "rating": 8.8,
     "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiAL_VeoWn6NF6-wTIJi54u32LBevLzhf0dw&s",
     "bannerImage": "https://i.redd.it/jd5kga5lwd131.jpg"
+  },
+  {
+    "id": 2,
+    "title": "The Witcher 3: Wild Hunt",
+    "genre": "RPG",
+    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
+    "releaseDate": "2015-05-19",
+    "developer": "CD Projekt Red",
+    "rating": 9.5,
+    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjoeSJD-maaNd40HZzP9bXE7K-9hLPQmo1FrGv1QFEZUBiTqT_xZxbKhBoTD__ETcvFlLFyg",
+    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PY-s8qv6RpLD_P0bOhurnkVHm6ATrUZd6A&s"
   },
   {
     "id": 3,

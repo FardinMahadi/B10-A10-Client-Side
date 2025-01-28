@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [games, setGames] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
@@ -28,6 +29,15 @@ const AuthProvider = ({ children }) => {
         setGames(data); // Store the games in the state
       })
       .catch((error) => console.error("Error fetching games:", error));
+  }, []);
+
+  useEffect(() => {
+    fetch("categories.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data); // Store the games in the state
+      })
+      .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
   useEffect(() => {
@@ -167,6 +177,8 @@ const AuthProvider = ({ children }) => {
     logIn,
     games,
     setGames,
+    categories,
+    setCategories,
   };
 
   return (
