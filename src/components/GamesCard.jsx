@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 const GamesCard = ({ game, isDarkMode }) => {
+  const navigate = useNavigate();
+  const handleExploreBtn = () => {
+    navigate(`/game/${game.id}`);
+  };
+
   return (
     <div
       className={`shadow-lg hover:shadow-2xl hover:scale-105 transition rounded-2xl overflow-hidden w-80 border hover:border-green-500 flex flex-col ${
@@ -52,7 +59,7 @@ const GamesCard = ({ game, isDarkMode }) => {
         <div className="mt-auto pt-4">
           <button
             className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition"
-            onClick={() => alert(`Exploring details of ${game.title}`)}
+            onClick={handleExploreBtn}
           >
             Explore Details
           </button>

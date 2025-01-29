@@ -10,12 +10,31 @@ import PrivateRoutes from "./PrivateRoutes";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ErrorPage from "../pages/ErrorPage";
+import GameDetails from "../pages/GameDetails";
+
+const gameLoader = async ({ params }) => {
+  const response = await fetch("/games.json");
+  const games = await response.json();
+
+  const game = games.find((game) => game.id === parseInt(params.id));
+
+  if (!game) {
+    throw new Error("Game not found");
+  }
+
+  return { game }; // Return the full game object, not just the ID
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "game/:id",
+    element: <GameDetails />,
+    loader: gameLoader,
   },
   {
     path: "auth",
