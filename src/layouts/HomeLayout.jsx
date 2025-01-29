@@ -4,6 +4,7 @@ import Footer from "./../components/Footer";
 import Navbar from "./../components/Navbar";
 import { AuthContext } from "../provider/AuthProvider";
 import Typewriter from "typewriter-effect/dist/core"; // Ensure you have this installed: `npm install typewriter-effect`
+import HighestRatedGames from "../components/HighestRatedGames";
 
 const HomeLayout = () => {
   const { categories } = useContext(AuthContext);
@@ -24,9 +25,10 @@ const HomeLayout = () => {
   return (
     <div>
       <Navbar />
+      {/* Banner */}
       <div className="container mx-auto mt-14">
         {/* Heading or Text Section */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 mt-10">
           <h1 className="text-4xl font-bold mb-4">
             Welcome to{" "}
             <span ref={typewriterRef} className="text-primary"></span>
@@ -38,6 +40,11 @@ const HomeLayout = () => {
         </div>
         {/* Banner Slider */}
         <BannerSlider />
+      </div>
+
+      {/* Highest Rated Games */}
+      <div className="container mx-auto mt-14">
+        <HighestRatedGames />
       </div>
       <Footer />
     </div>

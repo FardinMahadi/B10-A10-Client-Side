@@ -58,32 +58,28 @@ const Navbar = () => {
     };
   }, []);
 
+  const navLinkClass = ({ isActive }) =>
+    `block px-3 py-2 transition-colors hover:text-primary ${
+      isActive ? "text-primary font-semibold" : ""
+    }`;
+
   const links = (
     <>
-      <NavLink to="/" className="block px-3 py-2 hover:text-primary">
+      <NavLink to="/" className={navLinkClass}>
         Home
       </NavLink>
-      <NavLink to="/allReviews" className="block px-3 py-2 hover:text-primary">
+      <NavLink to="/allReviews" className={navLinkClass}>
         All Reviews
       </NavLink>
       {user && (
         <>
-          <NavLink
-            to="/addReview"
-            className="block px-3 py-2 hover:text-primary"
-          >
+          <NavLink to="/addReview" className={navLinkClass}>
             Add Review
           </NavLink>
-          <NavLink
-            to="/myReviews"
-            className="block px-3 py-2 hover:text-primary"
-          >
+          <NavLink to="/myReviews" className={navLinkClass}>
             My Reviews
           </NavLink>
-          <NavLink
-            to="/myWatchlist"
-            className="block px-3 py-2 hover:text-primary"
-          >
+          <NavLink to="/myWatchlist" className={navLinkClass}>
             Game Watchlist
           </NavLink>
         </>
@@ -92,7 +88,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="container mx-auto py-5">
+    <div
+      className={`container mx-auto py-8 bg-gradient-to-b ${
+        isDarkMode ? "from-gray-700 to-[#1D232A]" : "from-gray-300 to-white"
+      }`}
+    >
       <div className="flex px-5 md:flex-row justify-between items-center relative">
         <Link to="/">
           <Logo />

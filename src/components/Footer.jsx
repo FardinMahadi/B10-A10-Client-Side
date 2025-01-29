@@ -1,4 +1,10 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
@@ -51,7 +57,7 @@ const Footer = () => {
               href="https://www.facebook.com/mahadihasanfardin2"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl hover:text-blue-500"
             >
               <FaFacebook />
             </a>
@@ -59,7 +65,7 @@ const Footer = () => {
               href="https://x.com/FardinMahadi2"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl hover:text-blue-500"
             >
               <FaTwitter />
             </a>
@@ -67,7 +73,7 @@ const Footer = () => {
               href="https://github.com/FardinMahadi"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl hover:text-gray-500"
             >
               <FaGithub />
             </a>
@@ -75,7 +81,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/mahadi-hasan-fardin"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl hover:text-blue-500"
             >
               <FaLinkedin />
             </a>
