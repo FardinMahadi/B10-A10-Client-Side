@@ -12,28 +12,6 @@
   },
   {
     "id": 2,
-    "title": "The Witcher 3: Wild Hunt",
-    "genre": "RPG",
-    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
-    "releaseDate": "2015-05-19",
-    "developer": "CD Projekt Red",
-    "rating": 9.5,
-    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjoeSJD-maaNd40HZzP9bXE7K-9hLPQmo1FrGv1QFEZUBiTqT_xZxbKhBoTD__ETcvFlLFyg",
-    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PY-s8qv6RpLD_P0bOhurnkVHm6ATrUZd6A&s"
-  },
-  {
-    "id": 3,
-    "title": "FIFA 24",
-    "genre": "Sports",
-    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
-    "releaseDate": "2023-09-29",
-    "developer": "EA Sports",
-    "rating": 7.9,
-    "gameImage": "https://ansplayer.com/wp-content/uploads/2024/02/fifa-24.jpg",
-    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjpFDHnIUcri0-7lQvARHDelVzMTGy3OI-LA&s"
-  },
-  {
-    "id": 4,
     "title": "Cyberpunk 2077",
     "genre": "RPG",
     "platforms": ["PC", "PS5", "Xbox Series X"],
@@ -44,18 +22,7 @@
     "bannerImage": "https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpg"
   },
   {
-    "id": 5,
-    "title": "Elden Ring",
-    "genre": "Action RPG",
-    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
-    "releaseDate": "2022-02-25",
-    "developer": "FromSoftware",
-    "rating": 9.8,
-    "gameImage": "https://preview.redd.it/bueqtztxmnj81.png?width=640&crop=smart&auto=webp&s=377e0d875affec6537a26c6cc7f4721aebdeaba5",
-    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ij7zcVGFxkhxe3QS4HGqMNQ3ky99U3r-pg&s"
-  },
-  {
-    "id": 6,
+    "id": 3,
     "title": "Assassin's Creed Valhalla",
     "genre": "Action Adventure",
     "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
@@ -66,29 +33,7 @@
     "bannerImage": "https://cdn1.epicgames.com/400347196e674de89c23cc2a7f2121db/offer/AC%20KINGDOM%20PREORDER_STANDARD%20EDITION_EPIC_Key_Art_Wide_3840x2160-3840x2160-485fe17203671386c71bde8110886c7d.jpg"
   },
   {
-    "id": 7,
-    "title": "Red Dead Redemption 2",
-    "genre": "Action Adventure",
-    "platforms": ["PC", "PS4", "Xbox One"],
-    "releaseDate": "2018-10-26",
-    "developer": "Rockstar Games",
-    "rating": 9.7,
-    "gameImage": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg",
-    "bannerImage": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg?resize=1&w=480&h=270&quality=medium"
-  },
-  {
-    "id": 8,
-    "title": "Hogwarts Legacy",
-    "genre": "Action RPG",
-    "platforms": ["PC", "PS5", "Xbox Series X"],
-    "releaseDate": "2023-02-10",
-    "developer": "Portkey Games",
-    "rating": 8.9,
-    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEOcemKotvEN1KNvaiuIi-g4DS8Vxo_K3YuA&s",
-    "bannerImage": "https://i.ytimg.com/vi/ecgrvh4kQRU/maxresdefault.jpg"
-  },
-  {
-    "id": 9,
+    "id": 4,
     "title": "Spider-Man: Miles Morales",
     "genre": "Action Adventure",
     "platforms": ["PC", "PS5", "PS4"],
@@ -99,7 +44,7 @@
     "bannerImage": "https://i.ytimg.com/vi_webp/JsNgEBb4ZD0/maxresdefault.webp"
   },
   {
-    "id": 10,
+    "id": 5,
     "title": "Minecraft",
     "genre": "Sandbox",
     "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch", "Mobile"],
@@ -108,6 +53,61 @@
     "rating": 9.3,
     "gameImage": "https://upload.wikimedia.org/wikipedia/en/b/b6/Minecraft_2024_cover_art.png",
     "bannerImage": "https://i.ytimg.com/vi_webp/ztNoBI0m_P0/maxresdefault.webp"
+  },
+  {
+    "id": 6,
+    "title": "The Witcher 3: Wild Hunt",
+    "genre": "RPG",
+    "platforms": ["PC", "PS4", "Xbox One", "Nintendo Switch"],
+    "releaseDate": "2015-05-19",
+    "developer": "CD Projekt Red",
+    "rating": 9.5,
+    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjoeSJD-maaNd40HZzP9bXE7K-9hLPQmo1FrGv1QFEZUBiTqT_xZxbKhBoTD__ETcvFlLFyg",
+    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PY-s8qv6RpLD_P0bOhurnkVHm6ATrUZd6A&s"
+  },
+  {
+    "id": 7,
+    "title": "FIFA 24",
+    "genre": "Sports",
+    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
+    "releaseDate": "2023-09-29",
+    "developer": "EA Sports",
+    "rating": 7.9,
+    "gameImage": "https://ansplayer.com/wp-content/uploads/2024/02/fifa-24.jpg",
+    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjpFDHnIUcri0-7lQvARHDelVzMTGy3OI-LA&s"
+  },
+  {
+    "id": 8,
+    "title": "Elden Ring",
+    "genre": "Action RPG",
+    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
+    "releaseDate": "2022-02-25",
+    "developer": "FromSoftware",
+    "rating": 9.8,
+    "gameImage": "https://preview.redd.it/bueqtztxmnj81.png?width=640&crop=smart&auto=webp&s=377e0d875affec6537a26c6cc7f4721aebdeaba5",
+    "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ij7zcVGFxkhxe3QS4HGqMNQ3ky99U3r-pg&s"
+  },
+  {
+    "id": 9,
+    "title": "Red Dead Redemption 2",
+    "genre": "Action Adventure",
+    "platforms": ["PC", "PS4", "Xbox One"],
+    "releaseDate": "2018-10-26",
+    "developer": "Rockstar Games",
+    "rating": 9.7,
+    "gameImage": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg",
+    "bannerImage": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg?resize=1&w=480&h=270&quality=medium"
+  },
+  {
+    "id": 10,
+    "title": "Hogwarts Legacy",
+    "genre": "Action RPG",
+    "platforms": ["PC", "PS5", "Xbox Series X"],
+    "releaseDate": "2023-02-10",
+    "developer": "Portkey Games",
+    "rating": 8.9,
+    "gameImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEOcemKotvEN1KNvaiuIi-g4DS8Vxo_K3YuA&s",
+    "bannerImage": "https://i.ytimg.com/vi/ecgrvh4kQRU/maxresdefault.jpg"
   },
   {
     "id": 11,
@@ -129,28 +129,6 @@
   },
   {
     "id": 12,
-    "title": "League of Legends",
-    "genre": "MOBA",
-    "platforms": ["PC"],
-    "releaseDate": "2009-10-27",
-    "developer": "Riot Games",
-    "rating": 8.6,
-    "gameImage": "https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2021/09/league-of-legends.jpeg?fit=1607%2C895&ssl=1",
-    "bannerImage": "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-80471666c140f790f28dff68d72c384b"
-  },
-  {
-    "id": 13,
-    "title": "Apex Legends",
-    "genre": "Battle Royale",
-    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
-    "releaseDate": "2019-02-04",
-    "developer": "Respawn Entertainment",
-    "rating": 8.7,
-    "gameImage": "https://upload.wikimedia.org/wikipedia/en/d/db/Apex_legends_cover.jpg",
-    "bannerImage": "https://www.wrbl.com/wp-content/uploads/sites/24/2021/04/NexstarThumbnail_041421_ApexLegends_1680x945.jpg?strip=1"
-  },
-  {
-    "id": 14,
     "title": "Valorant",
     "genre": "Shooter",
     "platforms": ["PC"],
@@ -161,7 +139,7 @@
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqheNjqDM6HUBsC50p2yxwkE9VMWpQeKRfEA&s"
   },
   {
-    "id": 15,
+    "id": 13,
     "title": "The Legend of Zelda: Breath of the Wild",
     "genre": "Adventure",
     "platforms": ["Nintendo Switch"],
@@ -172,7 +150,7 @@
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjYLoYERymCvKtHd8BzV5xK7PFpJCVcmceVA&s"
   },
   {
-    "id": 16,
+    "id": 14,
     "title": "Super Mario Odyssey",
     "genre": "Platformer",
     "platforms": ["Nintendo Switch"],
@@ -183,7 +161,7 @@
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs4NmAG0D3uuog7AXEZZqrpjq9F_Loq8qkwQ&s"
   },
   {
-    "id": 17,
+    "id": 15,
     "title": "God of War Ragnarök",
     "genre": "Action Adventure",
     "platforms": ["PS5", "PS4"],
@@ -194,18 +172,7 @@
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyYuhTd0WPCOyGd-PaYWskuO1X6iiDypopEg&s"
   },
   {
-    "id": 18,
-    "title": "Hollow Knight",
-    "genre": "Metroidvania",
-    "platforms": ["PC", "Nintendo Switch", "PS4", "Xbox One"],
-    "releaseDate": "2017-02-24",
-    "developer": "Team Cherry",
-    "rating": 9.2,
-    "gameImage": "https://upload.wikimedia.org/wikipedia/en/0/04/Hollow_Knight_first_cover_art.webp",
-    "bannerImage": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000003208/4643fb058642335c523910f3a7910575f56372f612f7c0c9a497aaae978d3e51"
-  },
-  {
-    "id": 19,
+    "id": 16,
     "title": "Stardew Valley",
     "genre": "Simulation",
     "platforms": ["PC", "Nintendo Switch", "PS4", "Xbox One", "Mobile"],
@@ -216,7 +183,7 @@
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFN5F6k1w576eJ9oTjooStiG3shevkEa8Ng&s"
   },
   {
-    "id": 20,
+    "id": 17,
     "title": "The Elder Scrolls VI",
     "genre": "RPG",
     "platforms": ["PC", "PS5", "Xbox Series X"],
@@ -226,5 +193,38 @@
     "categories": ["RPG", "Action", "Adventure"],
     "gameImage": "https://assets-prd.ignimgs.com/2021/12/07/elderscrollsvi-ign-1638841050781.jpg",
     "bannerImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKNlixJbVfZ7QtGNKwYo51_Mr7XRZ9B7ys2Q&s"
+  },
+  {
+    "id": 18,
+    "title": "League of Legends",
+    "genre": "MOBA",
+    "platforms": ["PC"],
+    "releaseDate": "2009-10-27",
+    "developer": "Riot Games",
+    "rating": 8.6,
+    "gameImage": "https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2021/09/league-of-legends.jpeg?fit=1607%2C895&ssl=1",
+    "bannerImage": "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-80471666c140f790f28dff68d72c384b"
+  },
+  {
+    "id": 19,
+    "title": "Apex Legends",
+    "genre": "Battle Royale",
+    "platforms": ["PC", "PS5", "Xbox Series X", "PS4", "Xbox One"],
+    "releaseDate": "2019-02-04",
+    "developer": "Respawn Entertainment",
+    "rating": 8.7,
+    "gameImage": "https://upload.wikimedia.org/wikipedia/en/d/db/Apex_legends_cover.jpg",
+    "bannerImage": "https://www.wrbl.com/wp-content/uploads/sites/24/2021/04/NexstarThumbnail_041421_ApexLegends_1680x945.jpg?strip=1"
+  },
+  {
+    "id": 20,
+    "title": "Hollow Knight",
+    "genre": "Metroidvania",
+    "platforms": ["PC", "Nintendo Switch", "PS4", "Xbox One"],
+    "releaseDate": "2017-02-24",
+    "developer": "Team Cherry",
+    "rating": 9.2,
+    "gameImage": "https://upload.wikimedia.org/wikipedia/en/0/04/Hollow_Knight_first_cover_art.webp",
+    "bannerImage": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000003208/4643fb058642335c523910f3a7910575f56372f612f7c0c9a497aaae978d3e51"
   }
 ]
