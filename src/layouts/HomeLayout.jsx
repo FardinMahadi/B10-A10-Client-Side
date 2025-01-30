@@ -5,6 +5,7 @@ import Navbar from "./../components/Navbar";
 import { AuthContext } from "../provider/AuthProvider";
 import Typewriter from "typewriter-effect/dist/core"; // Ensure you have this installed: `npm install typewriter-effect`
 import HighestRatedGames from "../components/HighestRatedGames";
+import EditorsChoice from "../components/EditorsChoice";
 
 const HomeLayout = () => {
   const { categories } = useContext(AuthContext);
@@ -46,6 +47,9 @@ const HomeLayout = () => {
       <div className="container mx-auto mt-14">
         <HighestRatedGames />
       </div>
+
+      <EditorsChoice />
+
       <Footer />
     </div>
   );
