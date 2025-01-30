@@ -1,6 +1,4 @@
-import Navbar from "../../src/components/Navbar";
 import { useLoaderData } from "react-router-dom";
-import Footer from "../components/Footer";
 
 const GameDetails = ({ isDarkMode }) => {
   const { game } = useLoaderData();
@@ -14,8 +12,6 @@ const GameDetails = ({ isDarkMode }) => {
 
   return (
     <div>
-      <Navbar />
-
       {/* Banner Section */}
       <div
         className="h-64 md:h-96 bg-cover bg-center relative"
@@ -82,8 +78,6 @@ const GameDetails = ({ isDarkMode }) => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

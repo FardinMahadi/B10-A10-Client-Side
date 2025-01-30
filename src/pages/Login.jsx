@@ -4,8 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
-  const { handleGoogleSignIn, loading, setLoading, logIn, setUser } =
-    useContext(AuthContext);
+  const {
+    handleGoogleSignIn,
+    loading,
+    setLoading,
+    logIn,
+    setUser,
+    isDarkMode,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -43,7 +49,7 @@ const Login = () => {
         displayName: userCredential.displayName,
         email: userCredential.email,
         photoURL: userCredential.photoURL,
-      }
+      };
       setUser(user);
       console.log(user);
       navigate("/");
@@ -55,41 +61,48 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-10">
-      <div className="w-full max-w-md p-6 rounded-lg shadow-lg">
+    <div
+      className={`flex items-center justify-center min-h-screen py-10 transition-all duration-300 ${
+        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+      }`}
+    >
+      <div
+        className={`w-full max-w-md p-6 rounded-lg shadow-lg transition-all duration-300 ${
+          isDarkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+        }`}
+      >
         <h2 className="text-2xl font-bold text-center">Welcome Back!</h2>
         <p className="text-sm text-center">
           Log in to access the best gaming reviews.
         </p>
         <form className="mt-6 space-y-4" onSubmit={handleLogin}>
           <div>
-            <label className="block text-sm font-medium" htmlFor="email">
-              Email
-            </label>
+            <label className="block text-sm font-medium">Email</label>
             <input
               type="email"
-              id="email"
               name="email"
-              value={formData.email}
-              onChange={handleInputChange}
               placeholder="Enter your email"
-              className="w-full input input-bordered input-primary"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium" htmlFor="password">
-              Password
-            </label>
+            <label className="block text-sm font-medium">Password</label>
             <input
               type="password"
-              id="password"
               name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              placeholder="Enter your password"
-              className="w-full input input-bordered input-primary"
+              placeholder="Create a password"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
+              minLength={6}
             />
           </div>
           <div className="flex items-center justify-between">

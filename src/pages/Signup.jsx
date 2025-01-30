@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Signup = () => {
-  const { user, setUser, setLoading, handleGoogleSignIn, createNewUser } =
+  const { setUser, setLoading, handleGoogleSignIn, createNewUser, isDarkMode } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -13,23 +13,19 @@ const Signup = () => {
     setLoading(true);
     try {
       const userCredential = await handleGoogleSignIn();
+      setUser(userCredential.user);
 
       const response = await fetch("http://localhost:5000/users", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: userCredential.user }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          displayName: userCredential.user.displayName,
+          email: userCredential.user.email,
+        }),
       });
 
-      setUser(userCredential.user);
+      if (!response.ok) throw new Error("Network response was not ok");
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log("User saved successfully:", data);
       navigate("/");
     } catch (error) {
       console.error("Google sign-in error:", error.message);
@@ -61,20 +57,11 @@ const Signup = () => {
     try {
       setLoading(true);
       const userCredential = await createNewUser(email, password);
-
-      if (userCredential.user && userCredential.user.updateProfile) {
-        await userCredential.user.updateProfile({
-          displayName: name,
-        });
-      }
-
       setUser(userCredential.user);
 
       const response = await fetch("http://localhost:5000/users", {
         method: "POST",
-        headers: {
-          "content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           displayName: name,
           email,
@@ -83,13 +70,7 @@ const Signup = () => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to save user to the database.");
-      }
-
-      const data = await response.json();
-      console.log("User saved successfully:", data);
-
+      if (!response.ok) throw new Error("Failed to save user to the database.");
       navigate("/");
     } catch (error) {
       console.error("Sign-up error:", error.message);
@@ -100,14 +81,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-10">
-      <div className="w-full max-w-md p-6 rounded-lg shadow-lg">
+    <div
+      className={`flex items-center justify-center min-h-screen py-10 transition-all duration-300 ${
+        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+      }`}
+    >
+      <div
+        className={`w-full max-w-md p-6 rounded-lg shadow-lg transition-all duration-300 ${
+          isDarkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+        }`}
+      >
         <h2 className="text-2xl font-bold text-center">Join Us!</h2>
         <p className="text-sm text-center">
           Create an account to access the best gaming reviews.
         </p>
         {error && (
-          <div className="mt-4 text-sm text-red-600 text-center">{error}</div>
+          <div className="mt-4 text-sm text-red-500 text-center">{error}</div>
         )}
 
         <form className="mt-6 space-y-4" onSubmit={handleSignUp}>
@@ -117,7 +106,11 @@ const Signup = () => {
               type="text"
               name="name"
               placeholder="Choose a username"
-              className="w-full input input-bordered input-primary"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
             />
           </div>
@@ -127,7 +120,11 @@ const Signup = () => {
               type="email"
               name="email"
               placeholder="Enter your email"
-              className="w-full input input-bordered input-primary"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
             />
           </div>
@@ -137,7 +134,11 @@ const Signup = () => {
               type="password"
               name="password"
               placeholder="Create a password"
-              className="w-full input input-bordered input-primary"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
               minLength={6}
             />
@@ -150,24 +151,46 @@ const Signup = () => {
               type="password"
               name="confirm_password"
               placeholder="Confirm your password"
-              className="w-full input input-bordered input-primary"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
               required
             />
           </div>
-          <button type="submit" className="w-full btn font-semibold">
+          <button
+            type="submit"
+            className={`w-full btn font-semibold transition-all duration-300 ${
+              isDarkMode
+                ? "bg-blue-600 text-white hover:bg-blue-500"
+                : "bg-blue-500 text-white hover:bg-blue-400"
+            }`}
+          >
             Sign Up
           </button>
         </form>
         <div className="divider">OR</div>
         <button
-          className="w-full btn btn-outline font-semibold flex items-center justify-center gap-2"
+          className={`w-full btn btn-outline font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
+            isDarkMode
+              ? "border-white text-white hover:bg-white hover:text-gray-900"
+              : "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
+          }`}
           onClick={handleGoogleSignInWithRedirect}
         >
           <FaGoogle /> Continue with Google
         </button>
         <p className="mt-4 text-sm text-center">
           Already have an account?{" "}
-          <Link to="/auth/login" className="text-primary hover:underline">
+          <Link
+            to="/auth/login"
+            className={`font-semibold ${
+              isDarkMode
+                ? "text-blue-400 hover:text-blue-300"
+                : "text-blue-600 hover:text-blue-500"
+            }`}
+          >
             Log In
           </Link>
         </p>

@@ -27,14 +27,14 @@ const BannerSlider = () => {
         {games.map((game, index) => (
           <div
             key={game.id}
-            className={`carousel-item relative w-full transition-all duration-500 ${
+            className={`carousel-item relative w-full h-96 transition-all duration-500 ${
               index === currentIndex ? "block" : "hidden"
             }`}
           >
             <img
               src={game.bannerImage}
               alt={game.title}
-              className="w-full object-cover rounded-md"
+              className="w-full h-full object-cover rounded-md"
             />
             <div className="absolute bottom-5 left-5 text-white text-lg bg-black/50 px-4 py-2 rounded flex items-center gap-2">
               <img

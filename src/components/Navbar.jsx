@@ -16,7 +16,7 @@ const Navbar = () => {
   // Apply theme on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
-    setIsDarkMode(savedTheme === "dark");
+    setIsDarkMode((prev) => savedTheme === "dark");
     applyTheme(savedTheme);
   }, []);
 
@@ -48,15 +48,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (!e.target.closest(".dropdown")) {
+      if (isDropdownOpen && !e.target.closest(".dropdown")) {
         setIsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isDropdownOpen]);
 
   const navLinkClass = ({ isActive }) =>
     `block px-3 py-2 transition-colors hover:text-primary ${
@@ -105,10 +103,15 @@ const Navbar = () => {
             aria-controls="mobile-menu"
             className="btn m-1"
             onClick={toggleDropdown}
-            onKeyDown={(e) => e.key === "Enter" && toggleDropdown()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                toggleDropdown();
+              }
+            }}
           >
             <GiHamburgerMenu />
           </div>
+
           {isDropdownOpen && (
             <ul className="absolute top-full right-0 mt-2 bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
               {links}
@@ -158,11 +161,11 @@ const Navbar = () => {
               <img
                 className="h-10 w-10 rounded-full"
                 src={user.photoURL || defaultUserImg}
-                alt={user.displayName}
-                data-tooltip-id="my-tooltip"
+                alt={user.displayName || "User Avatar"}
+                data-tooltip-id="user-tooltip"
               />
-              <Tooltip id="my-tooltip">
-                <p className="font-semibold">{user.displayName}</p>
+              <Tooltip id="user-tooltip" clickable>
+                <p className="font-semibold">{user.displayName || "Guest"}</p>
                 <button
                   className="btn btn-sm btn-error mt-2"
                   onClick={handleLogout}

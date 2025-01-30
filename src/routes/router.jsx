@@ -11,30 +11,65 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ErrorPage from "../pages/ErrorPage";
 import GameDetails from "../pages/GameDetails";
+import MainLayout from "../layouts/MainLayout";
 
 const gameLoader = async ({ params }) => {
-  const response = await fetch("/games.json");
-  const games = await response.json();
+  try {
+    const response = await fetch("/games.json");
+    const games = await response.json();
 
-  const game = games.find((game) => game.id === parseInt(params.id));
+    const game = games.find((game) => game.id === parseInt(params.id));
 
-  if (!game) {
-    throw new Error("Game not found");
+    if (!game) {
+      throw new Error("Game not found");
+    }
+
+    return { game };
+  } catch (error) {
+    throw new Error("Failed to load game data");
   }
-
-  return { game }; // Return the full game object, not just the ID
 };
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomeLayout />,
+    element: <MainLayout />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <HomeLayout />,
+      },
+      {
+        path: "game/:id",
+        element: <GameDetails />,
+        loader: gameLoader,
+      },
+      {
+        path: "allReviews",
+        element: <AllReview />,
+      },
+    ],
   },
   {
-    path: "game/:id",
-    element: <GameDetails />,
-    loader: gameLoader,
+    element: <PrivateRoutes />,
+    children: [
+      {
+        path: "/addReview",
+        element: <AddReview />,
+      },
+      {
+        path: "/myReviews",
+        element: <MyReviews />,
+      },
+      {
+        path: "/myWatchlist",
+        element: <MyWatchList />,
+      },
+      {
+        path: "/updateReview/:id",
+        element: <UpdateReview />,
+      },
+    ],
   },
   {
     path: "auth",
@@ -49,42 +84,6 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
-  },
-  {
-    path: "allReviews",
-    element: <AllReview />,
-  },
-  {
-    path: "addReview",
-    element: (
-      <PrivateRoutes>
-        <AddReview />
-      </PrivateRoutes>
-    ),
-  },
-  {
-    path: "myReviews",
-    element: (
-      <PrivateRoutes>
-        <MyReviews />
-      </PrivateRoutes>
-    ),
-  },
-  {
-    path: "myWatchlist",
-    element: (
-      <PrivateRoutes>
-        <MyWatchList />
-      </PrivateRoutes>
-    ),
-  },
-  {
-    path: "updateReview/:id",
-    element: (
-      <PrivateRoutes>
-        <UpdateReview />
-      </PrivateRoutes>
-    ),
   },
 ]);
 

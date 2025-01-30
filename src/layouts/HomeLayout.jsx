@@ -25,7 +25,6 @@ const HomeLayout = () => {
 
   return (
     <div>
-      <Navbar />
       {/* Banner */}
       <div className="container mx-auto mt-14">
         {/* Heading or Text Section */}
@@ -49,8 +48,6 @@ const HomeLayout = () => {
       </div>
 
       <EditorsChoice />
-
-      <Footer />
     </div>
   );
 };

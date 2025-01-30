@@ -13,7 +13,10 @@ import LoadingPage from "../pages/LoadingPage";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [games, setGames] = useState(null);
@@ -21,6 +24,11 @@ const AuthProvider = ({ children }) => {
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   useEffect(() => {
     fetch("games.json")
@@ -41,15 +49,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (user && user.email) {
-      fetch(`http://localhost:5000/users?email=${user.email}`, {
-        method: "GET",
-      })
+    if (user?.email) {
+      fetch(`http://localhost:5000/users?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setUser(data))
         .catch((error) => console.error("Error fetching user data:", error));
     }
-  }, [user]);
+  }, [user?.email]);
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
@@ -64,21 +70,24 @@ const AuthProvider = ({ children }) => {
         lastLogin: new Date().toISOString(),
       });
 
-      const response = await fetch(`http://localhost:5000/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          displayName: googleUser.displayName,
-          email: googleUser.email,
-          photoURL: googleUser.photoURL,
-          accCreated: new Date().toISOString(),
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/users?email=${googleUser.email}`
+      );
+      const existingUser = await response.json();
 
-      if (!response.ok) {
-        throw new Error("Failed to save user to the database.");
+      if (!existingUser) {
+        await fetch(`http://localhost:5000/users`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            displayName: googleUser.displayName,
+            email: googleUser.email,
+            photoURL: googleUser.photoURL,
+            accCreated: new Date().toISOString(),
+          }),
+        });
       }
 
       return googleUser;
@@ -144,21 +153,16 @@ const AuthProvider = ({ children }) => {
   // Listen to authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const timer = setTimeout(() => {
-        if (currentUser) {
-          // Map the user object for your application needs
-          setUser({
-            displayName: currentUser.displayName,
-            email: currentUser.email,
-            photoURL: currentUser.photoURL,
-          });
-        } else {
-          setUser(null);
-        }
-        setLoading(false);
-      }, 500);
-
-      return () => clearTimeout(timer);
+      setUser(
+        currentUser
+          ? {
+              displayName: currentUser.displayName,
+              email: currentUser.email,
+              photoURL: currentUser.photoURL,
+            }
+          : null
+      );
+      setLoading(false);
     });
 
     return () => unsubscribe();
