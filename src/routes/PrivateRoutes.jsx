@@ -1,12 +1,20 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
+import Footer from "../components/Footer";
 
-const PrivateRoutes = ({ children }) => {
+const PrivateRoutes = () => {
   const { user } = useContext(AuthContext);
 
   if (user) {
-    return children;
+    return (
+      <>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </>
+    );
   }
 
   return <Navigate to="/auth/signup" replace />;

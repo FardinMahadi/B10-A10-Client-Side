@@ -1,14 +1,13 @@
 import { useContext, useEffect, useRef } from "react";
 import BannerSlider from "../components/BannerSlider";
-import Footer from "./../components/Footer";
-import Navbar from "./../components/Navbar";
 import { AuthContext } from "../provider/AuthProvider";
 import Typewriter from "typewriter-effect/dist/core"; // Ensure you have this installed: `npm install typewriter-effect`
 import HighestRatedGames from "../components/HighestRatedGames";
 import EditorsChoice from "../components/EditorsChoice";
+import DevMarQuee from "../components/DevMarQuee";
 
 const HomeLayout = () => {
-  const { categories } = useContext(AuthContext);
+  const { categories, isDarkMode } = useContext(AuthContext);
   const typewriterRef = useRef(null);
 
   useEffect(() => {
@@ -47,7 +46,14 @@ const HomeLayout = () => {
         <HighestRatedGames />
       </div>
 
-      <EditorsChoice />
+      <div className="w-full mt-14">
+        <DevMarQuee />
+      </div>
+
+      {/* Editors Choice section */}
+      <div className="container mx-auto my-14">
+        <EditorsChoice />
+      </div>
     </div>
   );
 };

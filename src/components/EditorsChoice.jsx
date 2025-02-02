@@ -5,7 +5,7 @@ const EditorsChoice = () => {
   const { games, isDarkMode } = useContext(AuthContext);
 
   return (
-    <section className="container mx-auto my-12 px-10">
+    <section className="px-10">
       <h2
         className={`text-3xl font-bold text-center mb-6 ${
           isDarkMode ? "text-white" : "text-gray-900"

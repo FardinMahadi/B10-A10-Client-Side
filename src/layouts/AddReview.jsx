@@ -1,5 +1,5 @@
-import { Navbar } from "react-bootstrap";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const AddReview = () => {
   return (
