@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const GamesCard = ({ game, isDarkMode }) => {
   const navigate = useNavigate();
   const handleExploreBtn = () => {
-    navigate(`/game/${game.id}`);
+    navigate(`/addReview/game/${game.id}`);
   };
 
   return (

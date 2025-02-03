@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Navigate, Outlet } from "react-router-dom";
-import { Navbar } from "react-bootstrap";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const PrivateRoutes = () => {
   const { user } = useContext(AuthContext);

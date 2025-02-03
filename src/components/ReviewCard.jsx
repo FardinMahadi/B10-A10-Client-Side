@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import defaultUserImg from "../assets/user.png";
 
 const ReviewCard = ({ review }) => {
   const { isDarkMode } = useContext(AuthContext);
   const [game, setGame] = useState(null);
+  const [reviewUser, setReviewUser] = useState(null);
 
   useEffect(() => {
     fetch("games.json")
@@ -15,22 +17,33 @@ const ReviewCard = ({ review }) => {
       .catch((error) => console.error("Error fetching games:", error));
   }, [review.gameId]);
 
+  useEffect(() => {
+    if (review.email) {
+      fetch(`http://localhost:5000/users?email=${review.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setReviewUser(data.photoURL);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    }
+  }, [review.email]);
+
   return (
     <div
-      className={`p-6 rounded-lg shadow-md ${
-        isDarkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+      className={`p-6 rounded-lg shadow-md hover:scale-105 transition ${
+        isDarkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-900"
       }`}
     >
-      {/* Game Info (Image + Title) */}
       {game && (
         <div className="flex items-center gap-4">
-          {/* Profile-like Game Image */}
           <img
-            src={game.gameImage}
-            alt={game.title}
+            src={reviewUser || defaultUserImg}
+            alt={review.displayName}
             className="w-12 h-12 rounded-full object-cover border border-gray-300"
           />
-          <h3 className="text-lg font-bold">{game.title}</h3>
+          <h3 className="text-lg font-bold">{review.title}</h3>
         </div>
       )}
 

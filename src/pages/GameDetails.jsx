@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import PostReview from "../components/PostReview";
 
 const GameDetails = ({ isDarkMode }) => {
   const { game } = useLoaderData();
@@ -77,6 +78,11 @@ const GameDetails = ({ isDarkMode }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* add review section */}
+      <div className="container mx-auto">
+        <PostReview game={game} />
       </div>
     </div>
   );

@@ -35,7 +35,6 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         setUser(null);
-        console.log("User Logged Out");
       })
       .catch((error) => {
         console.error("Error during logout:", error);

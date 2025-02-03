@@ -3,8 +3,8 @@ import BannerSlider from "../components/BannerSlider";
 import { AuthContext } from "../provider/AuthProvider";
 import Typewriter from "typewriter-effect/dist/core"; // Ensure you have this installed: `npm install typewriter-effect`
 import HighestRatedGames from "../components/HighestRatedGames";
-import EditorsChoice from "../components/EditorsChoice";
 import DevMarQuee from "../components/DevMarQuee";
+import AllGames from "../components/AllGames";
 
 const HomeLayout = () => {
   const { categories, isDarkMode } = useContext(AuthContext);
@@ -52,7 +52,7 @@ const HomeLayout = () => {
 
       {/* Editors Choice section */}
       <div className="container mx-auto my-14">
-        <EditorsChoice />
+        <AllGames />
       </div>
     </div>
   );

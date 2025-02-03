@@ -5,10 +5,7 @@ import GamesCard from "./GamesCard";
 const HighestRatedGames = () => {
   const { games } = useContext(AuthContext);
 
-  // Get top 6 highest-rated games
-  const topGames = [...games]
-    .sort((a, b) => b.rating - a.rating) // Sort by rating (highest first)
-    .slice(0, 6); // Take only the top 6
+  const topGames = [...games].sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return (
     <div className="flex flex-col items-center py-8 px-4 ">

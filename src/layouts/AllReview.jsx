@@ -13,6 +13,12 @@ const AllReview = () => {
       .then((data) => setReviews(data));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:5000/reviews")
+      .then((res) => res.json())
+      .then((data) => setReviews((prevReviews) => [...prevReviews, ...data]));
+  }, []);
+
   return (
     <div
       className={`container mx-auto px-4 py-8 ${

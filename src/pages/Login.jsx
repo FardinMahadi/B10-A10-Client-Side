@@ -51,7 +51,6 @@ const Login = () => {
         photoURL: userCredential.photoURL,
       };
       setUser(user);
-      console.log(user);
       navigate("/");
     } catch (error) {
       setError(`Google sign-in failed: ${error.message}`);

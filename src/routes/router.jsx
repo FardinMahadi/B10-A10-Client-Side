@@ -12,6 +12,7 @@ import Signup from "../pages/Signup";
 import ErrorPage from "../pages/ErrorPage";
 import GameDetails from "../pages/GameDetails";
 import MainLayout from "../layouts/MainLayout";
+import AllGames from "../components/AllGames";
 
 const gameLoader = async ({ params }) => {
   try {
@@ -39,11 +40,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomeLayout />,
       },
-      {
-        path: "game/:id",
-        element: <GameDetails />,
-        loader: gameLoader,
-      },
+
       {
         path: "allReviews",
         element: <AllReview />,
@@ -56,6 +53,17 @@ const router = createBrowserRouter([
       {
         path: "/addReview",
         element: <AddReview />,
+        children: [
+          {
+            path: "/addReview",
+            element: <AllGames />,
+          },
+          {
+            path: "game/:id",
+            element: <GameDetails />,
+            loader: gameLoader,
+          },
+        ],
       },
       {
         path: "/myReviews",
