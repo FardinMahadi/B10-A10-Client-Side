@@ -64,7 +64,9 @@ const AuthProvider = ({ children }) => {
   // Fetch user data from backend
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/users?email=${user.email}`)
+      fetch(
+        `https://b10-a10-server-side-chi.vercel.app/users?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => setUser(data))
         .catch((error) => console.error("Error fetching user data:", error));
@@ -90,12 +92,12 @@ const AuthProvider = ({ children }) => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/users?email=${googleUser.email}`
+        `https://b10-a10-server-side-chi.vercel.app/users?email=${googleUser.email}`
       );
       const existingUser = await response.json();
 
       if (!existingUser) {
-        await fetch(`http://localhost:5000/users`, {
+        await fetch(`https://b10-a10-server-side-chi.vercel.app/users`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

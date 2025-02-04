@@ -23,21 +23,24 @@ const PostReview = ({ game }) => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          gameId: game.id,
-          userId: user._id,
-          email: user.email,
-          username: user.displayName,
-          title: reviewTitle,
-          content: reviewText,
-          rating: reviewRating, // Send rating
-          platform, // Send selected platform
-          date: new Date().toISOString().split("T")[0],
-        }),
-      });
+      const response = await fetch(
+        "https://b10-a10-server-side-chi.vercel.app/reviews",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            gameId: game.id,
+            userId: user._id,
+            email: user.email,
+            username: user.displayName,
+            title: reviewTitle,
+            content: reviewText,
+            rating: reviewRating, // Send rating
+            platform, // Send selected platform
+            date: new Date().toISOString().split("T")[0],
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

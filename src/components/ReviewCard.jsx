@@ -19,7 +19,9 @@ const ReviewCard = ({ review }) => {
 
   useEffect(() => {
     if (review.email) {
-      fetch(`http://localhost:5000/users?email=${review.email}`)
+      fetch(
+        `https://b10-a10-server-side-chi.vercel.app/users?email=${review.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setReviewUser(data.photoURL);

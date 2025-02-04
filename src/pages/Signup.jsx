@@ -15,14 +15,17 @@ const Signup = () => {
       const userCredential = await handleGoogleSignIn();
       setUser(userCredential.user);
 
-      const response = await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          displayName: userCredential.user.displayName,
-          email: userCredential.user.email,
-        }),
-      });
+      const response = await fetch(
+        "https://b10-a10-server-side-chi.vercel.app/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            displayName: userCredential.user.displayName,
+            email: userCredential.user.email,
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Network response was not ok");
 
@@ -60,16 +63,19 @@ const Signup = () => {
       const userCredential = await createNewUser(email, password);
       setUser(userCredential.user);
 
-      const response = await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          displayName: name,
-          email,
-          photoURL: photoURL || null, // If no photo URL is provided, set it to null
-          lastLogin: new Date().toISOString(),
-        }),
-      });
+      const response = await fetch(
+        "https://b10-a10-server-side-chi.vercel.app/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            displayName: name,
+            email,
+            photoURL: photoURL || null, // If no photo URL is provided, set it to null
+            lastLogin: new Date().toISOString(),
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to save user to the database.");
       navigate("/");

@@ -8,12 +8,12 @@ const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) return; // Prevent fetching if user is not logged in
+    if (!user) return;
 
-    fetch("http://localhost:5000/reviews")
+    fetch("https://b10-a10-server-side-chi.vercel.app/reviews")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch reviews");
         return res.json();
@@ -28,19 +28,17 @@ const MyReviews = () => {
       .finally(() => setLoading(false));
   }, [user]);
 
-  // Handle Update: Navigate to the update page
   const handleUpdate = (reviewId) => {
-    navigate(`/update-review/${reviewId}`); // Navigate to the update page
+    navigate(`/update-review/${reviewId}`);
   };
 
-  // Handle Delete: Delete the review from the database and local state
   const handleDelete = (reviewId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this review?"
     );
     if (!confirmDelete) return;
 
-    fetch(`http://localhost:5000/reviews/${reviewId}`, {
+    fetch(`https://b10-a10-server-side-chi.vercel.app/reviews/${reviewId}`, {
       method: "DELETE",
     })
       .then((res) => {

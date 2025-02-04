@@ -16,7 +16,7 @@ const AllReview = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://b10-a10-server-side-chi.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews((prevReviews) => [...prevReviews, ...data]));
   }, []);
