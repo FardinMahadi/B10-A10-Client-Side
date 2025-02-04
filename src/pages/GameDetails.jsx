@@ -1,8 +1,35 @@
 import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import PostReview from "../components/PostReview";
 
 const GameDetails = ({ isDarkMode }) => {
   const { game } = useLoaderData();
+  const [watchlist, setWatchlist] = useState([]);
+
+  // Load watchlist from localStorage when the component mounts
+  useEffect(() => {
+    const storedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    setWatchlist(storedWatchlist);
+  }, []);
+
+  // Function to handle watchlist toggle
+  const toggleWatchlist = () => {
+    let updatedWatchlist;
+
+    if (watchlist.includes(game.id)) {
+      // Remove the game from the watchlist
+      updatedWatchlist = watchlist.filter((gameId) => gameId !== game.id);
+    } else {
+      // Add the game ID to the watchlist
+      updatedWatchlist = [...watchlist, game.id];
+    }
+
+    setWatchlist(updatedWatchlist);
+    localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
+  };
+
+  // Check if the game is in the watchlist
+  const isInWatchlist = watchlist.includes(game.id);
 
   if (!game)
     return (
@@ -76,11 +103,23 @@ const GameDetails = ({ isDarkMode }) => {
                 ))}
               </div>
             </div>
+
+            {/* Watchlist Button */}
+            <button
+              onClick={toggleWatchlist}
+              className={`mt-4 px-6 py-2 text-lg font-bold rounded-lg transition ${
+                isInWatchlist
+                  ? "bg-red-500 text-white hover:bg-red-600"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+            >
+              {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* add review section */}
+      {/* Add review section */}
       <div className="container mx-auto">
         <PostReview game={game} />
       </div>

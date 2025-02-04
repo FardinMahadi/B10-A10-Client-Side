@@ -19,35 +19,49 @@ const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [games, setGames] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const [games, setGames] = useState(
+    () => JSON.parse(localStorage.getItem("games")) || []
+  );
+  const [categories, setCategories] = useState(
+    () => JSON.parse(localStorage.getItem("categories")) || []
+  );
+  const [watchlist, setWatchList] = useState(() => {
+    return JSON.parse(localStorage.getItem("watchlist")) || [];
+  });
 
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
 
+  // Combined fetching for games and categories
+  useEffect(() => {
+    if (games.length === 0) {
+      fetch("games.json")
+        .then((res) => res.json())
+        .then((data) => {
+          setGames(data);
+          localStorage.setItem("games", JSON.stringify(data));
+        })
+        .catch((error) => console.error("Error fetching games:", error));
+    }
+
+    if (categories.length === 0) {
+      fetch("categories.json")
+        .then((res) => res.json())
+        .then((data) => {
+          setCategories(data);
+          localStorage.setItem("categories", JSON.stringify(data));
+        })
+        .catch((error) => console.error("Error fetching categories:", error));
+    }
+  }, [games.length, categories.length]);
+
+  // Update theme in localStorage
   useEffect(() => {
     document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 
-  useEffect(() => {
-    fetch("games.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setGames(data); // Store the games in the state
-      })
-      .catch((error) => console.error("Error fetching games:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("categories.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data); // Store the games in the state
-      })
-      .catch((error) => console.error("Error fetching categories:", error));
-  }, []);
-
+  // Fetch user data from backend
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:5000/users?email=${user.email}`)
@@ -56,6 +70,11 @@ const AuthProvider = ({ children }) => {
         .catch((error) => console.error("Error fetching user data:", error));
     }
   }, [user?.email]);
+
+  // Store wishlist in localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(watchlist));
+  }, [watchlist]);
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
@@ -168,6 +187,24 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, [auth]);
 
+  // Function to handle wishlist updates
+  const toggleWishlist = (gameId) => {
+    setWishlist((prevWishlist) => {
+      let updatedWishlist;
+      if (prevWishlist.includes(gameId)) {
+        // Remove from wishlist
+        updatedWishlist = prevWishlist.filter((id) => id !== gameId);
+      } else {
+        // Add to wishlist
+        updatedWishlist = [...prevWishlist, gameId];
+      }
+
+      // Update localStorage
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      return updatedWishlist;
+    });
+  };
+
   const authInfo = {
     isDarkMode,
     setIsDarkMode,
@@ -183,6 +220,9 @@ const AuthProvider = ({ children }) => {
     setGames,
     categories,
     setCategories,
+    watchlist,
+    setWatchList,
+    toggleWishlist,
   };
 
   return (
