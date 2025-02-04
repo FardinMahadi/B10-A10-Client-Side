@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import ReviewCard from "../components/ReviewCard";
 import { AuthContext } from "../provider/AuthProvider";
 
 const AllReview = () => {
   const { isDarkMode } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const [reviews, setReviews] = useState([]);
 
@@ -18,6 +20,11 @@ const AllReview = () => {
       .then((res) => res.json())
       .then((data) => setReviews((prevReviews) => [...prevReviews, ...data]));
   }, []);
+
+  // Function to handle navigate to a specific review
+  const handleExploreDetails = (id) => {
+    navigate(`/addReview/game/${id}`); // Navigate to the dynamic route
+  };
 
   return (
     <div
@@ -37,7 +44,16 @@ const AllReview = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.length > 0 ? (
           reviews.map((review, idx) => (
-            <ReviewCard key={idx} review={review} isDarkMode={isDarkMode} />
+            <div className="flex flex-col" key={idx}>
+              <ReviewCard review={review} isDarkMode={isDarkMode} />
+              <button
+                onClick={() => handleExploreDetails(review.gameId)} // Pass the review id
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition"
+              >
+                {console.log(review)}
+                Explore Details
+              </button>
+            </div>
           ))
         ) : (
           <p className="text-center col-span-full">No reviews available.</p>

@@ -43,6 +43,7 @@ const Signup = () => {
     const email = form.email.value.trim();
     const password = form.password.value.trim();
     const confirm = form.confirm_password.value.trim();
+    const photoURL = form.photoURL.value.trim();
 
     if (!name || !email || !password || !confirm) {
       setError("All fields are required.");
@@ -65,7 +66,7 @@ const Signup = () => {
         body: JSON.stringify({
           displayName: name,
           email,
-          photoURL: null,
+          photoURL: photoURL || null, // If no photo URL is provided, set it to null
           lastLogin: new Date().toISOString(),
         }),
       });
@@ -157,6 +158,22 @@ const Signup = () => {
                   : "bg-gray-200 text-gray-900"
               }`}
               required
+            />
+          </div>
+          {/* Photo URL Input Section */}
+          <div>
+            <label className="block text-sm font-medium">
+              Photo URL (Optional)
+            </label>
+            <input
+              type="url"
+              name="photoURL"
+              placeholder="Enter photo URL"
+              className={`w-full input input-bordered ${
+                isDarkMode
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-gray-900"
+              }`}
             />
           </div>
           <button

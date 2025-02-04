@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const MyWatchList = () => {
-  const { watchlist, games, isDarkMode } = useContext(AuthContext);
+  const { watchlist, games, isDarkMode, toggleWatchList } =
+    useContext(AuthContext);
 
   // Filter games that are in the watchlist
   const watchedGames = games.filter((game) => watchlist.includes(game.id));
+
+  useEffect(() => {}, [watchlist]);
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -49,6 +52,26 @@ const MyWatchList = () => {
               >
                 Read Full Review →
               </Link>
+              {/* Toggle Watchlist Button */}
+              <button
+                onClick={() => toggleWatchList(game.id)}
+                className={`absolute top-2 right-2 p-2 rounded-full ${
+                  watchlist.includes(game.id)
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-300 text-gray-700"
+                }`}
+                aria-label={
+                  watchlist.includes(game.id)
+                    ? "Remove from watchlist"
+                    : "Add to watchlist"
+                }
+              >
+                {watchlist.includes(game.id) ? (
+                  <span className="material-icons">favorite</span>
+                ) : (
+                  <span className="material-icons">favorite_border</span>
+                )}
+              </button>
             </div>
           ))}
         </div>

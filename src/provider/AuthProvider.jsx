@@ -71,9 +71,9 @@ const AuthProvider = ({ children }) => {
     }
   }, [user?.email]);
 
-  // Store wishlist in localStorage whenever it changes
+  // Store watchlist in localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(watchlist));
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
   }, [watchlist]);
 
   const handleGoogleSignIn = async () => {
@@ -187,21 +187,21 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, [auth]);
 
-  // Function to handle wishlist updates
-  const toggleWishlist = (gameId) => {
-    setWishlist((prevWishlist) => {
-      let updatedWishlist;
-      if (prevWishlist.includes(gameId)) {
-        // Remove from wishlist
-        updatedWishlist = prevWishlist.filter((id) => id !== gameId);
+  // Function to handle watchlist updates
+  const toggleWatchList = (gameId) => {
+    setWatchList((prevWatchList) => {
+      let updatedWatchList;
+      if (prevWatchList.includes(gameId)) {
+        // Remove from watchlist
+        updatedWatchList = prevWatchList.filter((id) => id !== gameId);
       } else {
-        // Add to wishlist
-        updatedWishlist = [...prevWishlist, gameId];
+        // Add to watchlist
+        updatedWatchList = [...prevWatchList, gameId];
       }
 
       // Update localStorage
-      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-      return updatedWishlist;
+      localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
+      return updatedWatchList;
     });
   };
 
@@ -222,7 +222,7 @@ const AuthProvider = ({ children }) => {
     setCategories,
     watchlist,
     setWatchList,
-    toggleWishlist,
+    toggleWatchList, // Updated function reference
   };
 
   return (
